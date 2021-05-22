@@ -1,13 +1,23 @@
+import ProductBestSeller from '../components/ProductBestSellter';
+import ProductRecent from '../components/ProductRecent';
+import Main from '../layouts/Main';
+import Section from '../layouts/Section';
+
 export interface TopPageProps {}
 
 const TopPage: React.FC<TopPageProps> = () => {
   return (
-    <div>
-      <main>
-        <h1>Top Page</h1>
-        <section></section>
-      </main>
-    </div>
+    <Main>
+      <Section>
+        <h1>Top</h1>
+      </Section>
+      <Section>
+        <ProductBestSeller />
+      </Section>
+      <Section>
+        <ProductRecent />
+      </Section>
+    </Main>
   );
 };
 
