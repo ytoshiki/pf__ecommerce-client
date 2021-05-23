@@ -10,9 +10,7 @@ const ProductBestSeller: React.FC<ProductBestSellerProps> = () => {
   const [productData, setProductData] = useState<any[]>([]);
 
   useEffect(() => {
-    if (productData.length > 0) {
-      return;
-    }
+    let mounted = true;
 
     const logPurchases = async () => {
       try {
@@ -62,7 +60,7 @@ const ProductBestSeller: React.FC<ProductBestSellerProps> = () => {
 
         returndata.sort(compareProfit);
 
-        setProductData(returndata.slice(0, 10));
+        if (mounted) setProductData(returndata.slice(0, 10));
       } catch (error) {
         console.log(error.message);
         return;
@@ -70,7 +68,13 @@ const ProductBestSeller: React.FC<ProductBestSellerProps> = () => {
     };
 
     logPurchases();
-  }, [productData, setProductData]);
+
+    const cleanup = () => {
+      mounted = false;
+    };
+
+    return cleanup;
+  }, []);
 
   const renderDOM = productData.length ? (
     <>

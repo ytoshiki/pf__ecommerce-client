@@ -1,9 +1,7 @@
-export interface ProductApiTypes {
-  images: string[];
-  reviews: string[] | [];
+export interface CategoryApiTypes {
+  paragraph: null | string;
   _id: string;
-  category: any;
-  price: number;
-  createdAt: string;
   name: string;
+  image: string;
+  heading: string;
 }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { ProductApiTypes } from '../types/api/CategoryApiTypes';
+import { ProductApiTypes } from '../types/api/ProductApiTypes';
+
 import { compareProfit } from '../utils/compare';
 import Label from './Label';
 import ProductCarouselList from './ProductCarouselList';
@@ -11,9 +12,7 @@ const ProductRecent: React.FC<ProductRecentProps> = () => {
   const [productData, setProductData] = useState<any[]>([]);
 
   useEffect(() => {
-    if (productData.length > 0) {
-      return;
-    }
+    let mounted = true;
 
     const logPurchases = async () => {
       try {
@@ -31,12 +30,18 @@ const ProductRecent: React.FC<ProductRecentProps> = () => {
           return new Date(prev.createdAt).getTime() - new Date(curr.createdAt).getTime();
         });
 
-        setProductData(sortedProducts.slice(0, 8));
+        if (mounted) setProductData(sortedProducts.slice(0, 8));
+
+        const cleanup = () => {
+          mounted = false;
+        };
+
+        return cleanup;
       } catch {}
     };
 
     logPurchases();
-  }, [productData, setProductData]);
+  }, []);
 
   const renderDOM = productData.length ? (
     <>

@@ -33,10 +33,12 @@ export const dispatchfetchCategories = () => {
         image: category.image
       }));
 
-      return dispatch({
+      dispatch({
         type: CategoryDispatchTypes.FETCH_CATEGORIES,
         payload: categories_payload
       });
+
+      return categories_payload;
     } catch (error) {
       console.log(error.message);
     }

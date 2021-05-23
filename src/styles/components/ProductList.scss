@@ -1,0 +1,18 @@
+.c-product-list {
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+
+    &.is-column-two {
+      .c-product-item {
+        width: 50% !important;
+      }
+    }
+
+    &.is-column-three {
+      .c-product-item {
+        width: 33.3% !important;
+      }
+    }
+  }
+}

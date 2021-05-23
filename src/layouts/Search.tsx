@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import SearchInput from '../components/SearchInput';
 import SearchResult from '../components/SearchResult';
-import { ProductApiTypes } from '../types/api/CategoryApiTypes';
+import { ProductApiTypes } from '../types/api/ProductApiTypes';
 
 export interface SearchProps {
   hidden: (bool: boolean) => void;

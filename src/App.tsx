@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Navigation from './layouts/Navigation';
 import TopPage from './pages/TopPage';

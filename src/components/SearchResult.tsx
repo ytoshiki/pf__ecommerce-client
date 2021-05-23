@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ProductApiTypes } from '../types/api/CategoryApiTypes';
+import { ProductApiTypes } from '../types/api/ProductApiTypes';
+
 import { generateKey } from '../utils/generateKey';
 
 export interface SearchResultProps {
