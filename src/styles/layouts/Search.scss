@@ -1,0 +1,35 @@
+.l-search {
+  position: absolute;
+  z-index: 33;
+  width: 100%;
+  background: #fff;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+  padding: 2.8rem 5rem;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__close {
+    outline: none;
+    border: none;
+    background: none;
+  }
+
+  &__input {
+    input {
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 1.6rem;
+      padding-left: 2rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

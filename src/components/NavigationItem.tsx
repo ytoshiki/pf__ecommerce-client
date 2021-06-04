@@ -8,7 +8,7 @@ export interface NavigationItemProps {
 
 const NavigationItem: React.FC<NavigationItemProps> = ({ item, property, link }) => {
   const returnedList = link ? (
-    <li>
+    <li className='l-navigation__item'>
       <Link to={`/collections/${item[link]}`}>{property ? item[property] : item}</Link>
     </li>
   ) : (

@@ -4,35 +4,44 @@ import { Link } from 'react-router-dom';
 import NavigationList from '../components/NavigationList';
 import NavigationOptionList from '../components/NavigationOptionList';
 import { dispatchfetchCategories } from '../store/actions/category.action';
+import { CartState } from '../types/store/cart/stateTypes';
 import { CategoryState } from '../types/store/categories/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
+import '../styles/layouts/Navigation.scss';
 
 export interface NavigationProps {
   categories: CategoryState[];
   fetchCategories: () => void;
+  cart: CartState;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ categories, fetchCategories }) => {
+const Navigation: React.FC<NavigationProps> = ({ categories, fetchCategories, cart }) => {
   useEffect(() => {
-    if (categories.length > 0) return;
+    let mounted = true;
+    if (mounted) fetchCategories();
 
-    fetchCategories();
-  }, [categories, fetchCategories]);
+    return () => {
+      mounted = false;
+    };
+  }, [fetchCategories]);
+
+  console.log(cart);
 
   return (
-    <nav>
+    <nav className='l-navigation'>
       {categories.length && <NavigationList items={categories} property='name' link='id' />}
-      <div className='logo'>
+      <div className='l-navigation__logo'>
         <Link to='/'>W</Link>
       </div>
-      <NavigationOptionList />
+      <NavigationOptionList hasItemsInCart={cart.cartItems.length ? true : false} />
     </nav>
   );
 };
 
 const mapStateToProps = (store: storeTypes) => {
   return {
-    categories: store.categories
+    categories: store.categories,
+    cart: store.cart
   };
 };
 

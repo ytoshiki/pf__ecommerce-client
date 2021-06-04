@@ -10,7 +10,7 @@ export interface ProductCarouselItemProps {
 const ProductCarouselItem: React.FC<ProductCarouselItemProps> = ({ item, properties, array }) => {
   return (
     <div>
-      <Link to={`/products/${item.id}`}>
+      <Link to={`/products/${item.id || (item as any)._id}`}>
         <img src={item[array[0]][0]} alt='' />
         {properties?.map((property) => {
           return <div key={generateKey(property)}>{item[property]}</div>;

@@ -1,0 +1,6 @@
+export enum OptionDispatchTypes {
+  OPEN_CART = 'OPEN_CART',
+  CLOSE_CART = 'CLOSE_CART',
+  OPEN_SEARCH = 'OPEN_SEARCH',
+  CLOSE_SEARCH = 'CLOSE_SEARCH'
+}

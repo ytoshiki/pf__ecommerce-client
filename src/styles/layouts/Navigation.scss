@@ -1,0 +1,39 @@
+.l-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.8rem 5rem 2.4rem;
+  box-shadow: 0 -1px #d7d6d4 inset;
+  position: relative;
+  z-index: 77;
+
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    font-size: 1.4rem;
+    list-style: none;
+    margin-right: 2rem;
+    text-transform: capitalize;
+  }
+
+  &__logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    a {
+      font-family: 'Yellowtail', cursive !important;
+      font-size: 3rem !important;
+    }
+  }
+
+  a {
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: var(--font-base-color);
+    font-family: 'Lora', serif;
+  }
+}

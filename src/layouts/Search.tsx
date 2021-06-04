@@ -1,18 +1,23 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import SearchInput from '../components/SearchInput';
 import SearchResult from '../components/SearchResult';
+import { dispatchCloseSearch } from '../store/actions/option.action';
 import { ProductApiTypes } from '../types/api/ProductApiTypes';
+import '../styles/layouts/Search.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export interface SearchProps {
-  hidden: (bool: boolean) => void;
+  closeSearch: () => void;
 }
 
 const searchProducts = (data: ProductApiTypes[], term: string) => {
   return data.filter((product) => product.name.toLowerCase().trim().includes(term.toLowerCase().trim()));
 };
 
-const Search: React.FC<SearchProps> = ({ hidden }) => {
+const Search: React.FC<SearchProps> = ({ closeSearch }) => {
   const [products, setProducts] = useState<ProductApiTypes[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<ProductApiTypes[]>([]);
 
@@ -45,18 +50,26 @@ const Search: React.FC<SearchProps> = ({ hidden }) => {
     if (e.target.value === '') return setFilteredProducts([]);
     setTimeout(() => {
       setFilteredProducts(searchProducts(products, e.target.value));
-    }, 1000);
+    }, 300);
   };
 
   return (
-    <div>
-      <div>
+    <div className='l-search'>
+      <div className='l-search__inner'>
         <SearchInput onChange={onChange} />
-        <div onClick={() => hidden(false)}>X</div>
+        <button className='l-search__close' onClick={closeSearch}>
+          <FontAwesomeIcon icon={faTimes} color='#bbb' />
+        </button>
       </div>
       {filteredProducts.length ? <SearchResult items={filteredProducts} /> : null}
     </div>
   );
 };
 
-export default Search;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    closeSearch: () => dispatch(dispatchCloseSearch())
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Search);

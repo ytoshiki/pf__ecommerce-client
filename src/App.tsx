@@ -7,31 +7,34 @@ import ProductsPage from './pages/ProductsPage';
 import SingleProductPage from './pages/SingleProductPage';
 import CheckoutPage from './pages/CheckoutPage';
 import RegisterPage from './pages/RegisterPage';
+import AppContainer from './layouts/AppContainer';
 
 function App() {
   return (
     <Router>
-      <Navigation />
-      <Switch>
-        <Route path='/products/:id'>
-          <SingleProductPage />
-        </Route>
-        <Route path='/collections' exact>
-          <CategoryNavigationPage />
-        </Route>
-        <Route path='/collections/:id'>
-          <ProductsPage />
-        </Route>
-        <Route path='/checkout'>
-          <CheckoutPage />
-        </Route>
-        <Route path='/register'>
-          <RegisterPage />
-        </Route>
-        <Route path='/' exact>
-          <TopPage />
-        </Route>
-      </Switch>
+      <AppContainer>
+        <Navigation />
+        <Switch>
+          <Route path='/products/:id'>
+            <SingleProductPage />
+          </Route>
+          <Route path='/collections' exact>
+            <CategoryNavigationPage />
+          </Route>
+          <Route path='/collections/:id'>
+            <ProductsPage />
+          </Route>
+          <Route path='/checkout'>
+            <CheckoutPage />
+          </Route>
+          <Route path='/register'>
+            <RegisterPage />
+          </Route>
+          <Route path='/' exact>
+            <TopPage />
+          </Route>
+        </Switch>
+      </AppContainer>
     </Router>
   );
 }

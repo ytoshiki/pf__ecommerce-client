@@ -8,7 +8,10 @@ interface FETCH_CART_ITEMS {
 
 interface ADD_CART_ITEM {
   type: CartDispatchTypes.ADD_CART_ITEM;
-  payload: CartData;
+  payload: {
+    cart: CartData;
+    total: number;
+  };
 }
 
 interface CALCULATE_SUM {
@@ -18,17 +21,30 @@ interface CALCULATE_SUM {
 
 interface INCREASE_ITEM_QUANTITY {
   type: CartDispatchTypes.INCREASE_ITEM_QUANTITY;
-  payload: CartData[];
+  payload: {
+    cart: CartData[];
+    sum: number;
+  };
 }
 
 interface DECREASE_ITEM_QUANTITY {
   type: CartDispatchTypes.DECREASE_ITEM_QUANTITY;
-  payload: CartData[];
+  payload: {
+    cart: CartData[];
+    sum: number;
+  };
 }
 
 interface REMOVE_ITEM {
   type: CartDispatchTypes.REMOVE_ITEM;
-  payload: CartData;
+  payload: {
+    cart: CartData[];
+    sum: number;
+  };
 }
 
-export type CartActions = FETCH_CART_ITEMS | CALCULATE_SUM | INCREASE_ITEM_QUANTITY | DECREASE_ITEM_QUANTITY | REMOVE_ITEM | ADD_CART_ITEM;
+interface CLEAR_CART {
+  type: CartDispatchTypes.CLEAR_CART;
+}
+
+export type CartActions = FETCH_CART_ITEMS | CALCULATE_SUM | INCREASE_ITEM_QUANTITY | DECREASE_ITEM_QUANTITY | REMOVE_ITEM | ADD_CART_ITEM | CLEAR_CART;

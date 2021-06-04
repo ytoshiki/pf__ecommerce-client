@@ -5,6 +5,7 @@ export interface CartData {
   category: string;
   price: number;
   quantity: number;
+  sum: number;
 }
 
 export interface CartState {

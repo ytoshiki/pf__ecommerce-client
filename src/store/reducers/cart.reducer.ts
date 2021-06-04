@@ -17,12 +17,14 @@ export const cartReducer = (state: CartState = initialState, action: CartActions
     case CartDispatchTypes.ADD_CART_ITEM:
       return {
         ...state,
-        cartItems: state.cartItems.concat(action.payload)
+        cartItems: state.cartItems.concat(action.payload.cart),
+        sum: state.sum + action.payload.total
       };
     case CartDispatchTypes.REMOVE_ITEM:
       return {
         ...state,
-        cartItems: state.cartItems.filter((cartItem) => cartItem.id !== action.payload.id)
+        cartItems: action.payload.cart,
+        sum: action.payload.sum
       };
     case CartDispatchTypes.CALCULATE_SUM: {
       return {
@@ -33,13 +35,17 @@ export const cartReducer = (state: CartState = initialState, action: CartActions
     case CartDispatchTypes.INCREASE_ITEM_QUANTITY:
       return {
         ...state,
-        cartItems: action.payload
+        cartItems: action.payload.cart,
+        sum: action.payload.sum
       };
     case CartDispatchTypes.DECREASE_ITEM_QUANTITY:
       return {
         ...state,
-        cartItems: action.payload
+        cartItems: action.payload.cart,
+        sum: action.payload.sum
       };
+    case CartDispatchTypes.CLEAR_CART:
+      return initialState;
     default:
       return state;
   }

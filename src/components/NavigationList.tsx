@@ -1,5 +1,6 @@
 import { generateKey } from '../utils/generateKey';
 import NavigationItem from './NavigationItem';
+import '../styles/layouts/Navigation.scss';
 
 export interface NavigationListProps {
   items: any[];
@@ -9,7 +10,7 @@ export interface NavigationListProps {
 
 const NavigationList: React.FC<NavigationListProps> = ({ items, property, link }) => {
   return (
-    <ul>
+    <ul className='l-navigation__list'>
       {items.map((item, index) => {
         return <NavigationItem key={generateKey(String(index))} item={item} property={property && property} link={link && link} />;
       })}
