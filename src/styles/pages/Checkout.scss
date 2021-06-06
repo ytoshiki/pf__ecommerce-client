@@ -1,0 +1,177 @@
+.c-checkout {
+  width: 100%;
+  max-width: 90rem;
+  margin: auto;
+  min-height: 30rem;
+  &__heading {
+    text-align: center;
+    h1 {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__list {
+    margin-top: 4rem;
+  }
+
+  &__item {
+    list-style: none;
+    padding: 2rem 0;
+    border-bottom: 1px solid #d7d6d4;
+
+    &-content {
+      display: flex;
+      align-items: center;
+    }
+    &-info {
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+    }
+
+    &-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      &-wrapper {
+        position: relative;
+        overflow: hidden;
+        width: 12rem;
+
+        &::before {
+          content: '';
+          padding-top: 328/245 * 100%;
+          display: block;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &-detail {
+      margin-left: 2rem;
+      span {
+        display: block;
+      }
+    }
+
+    &-name {
+      text-align: left;
+      color: #282828;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    &-category {
+      color: #6d6d6d;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    &-price {
+      display: block;
+      font-size: 1.3rem;
+      font-family: 'Brygada 1918', serif;
+      letter-spacing: 0.05em;
+      display: block;
+    }
+
+    &-option {
+    }
+
+    &-quantity {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+
+      button {
+        outline: none;
+        background: none;
+        border: 1px solid #a3a2a1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+      }
+
+      span {
+        display: inline-block;
+        margin: 0 2rem;
+      }
+    }
+
+    &-remove {
+      outline: none;
+      background: none;
+      border: none;
+      text-transform: uppercase;
+      padding-bottom: 0.5rem;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #a3a2a1;
+      display: block;
+      margin-left: auto;
+    }
+
+    &-sum {
+      min-width: 20rem;
+      text-align: right;
+      font-family: 'Brygada 1918', serif;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  &__confirm {
+    text-align: right;
+    margin-top: 2rem;
+
+    &-sum {
+      font-size: 2.3rem;
+      font-family: 'Brygada 1918', serif;
+      display: block;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    &-terms {
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      span {
+        display: inline-block;
+        margin-left: 0.5rem;
+      }
+    }
+
+    button {
+      border: none;
+      padding: 1.5rem 6rem;
+      display: inline-block;
+      background: #282828;
+      color: #fff;
+      font-family: inherit;
+      text-transform: uppercase;
+    }
+  }
+}

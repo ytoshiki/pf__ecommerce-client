@@ -8,6 +8,8 @@ import { dispatchClearCart, dispatchDecreaseQuantity, dispatchIncreaseQuantity, 
 import { CartState } from '../types/store/cart/stateTypes';
 import { CustomerData } from '../types/store/customer/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
+import '../styles/pages/Checkout.scss';
+import Footer from '../layouts/Footer';
 
 export interface CheckoutPageProps {
   cart: CartState;
@@ -67,44 +69,60 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cart, dispatchIncrease, dis
       <SimpleModal isOpen={modalIsOpen} toggleOpen={setModalIsOpen} />
       <Section>
         {}
-        <h1>Cart</h1>
-        {cart.sum > 100 ? <p>You are eligible for free shipping</p> : <p>You need to purchase more than $100 for free shipping</p>}
-        {cart.cartItems.length && (
-          <>
-            <ul>
-              {cart.cartItems.map((item) => (
-                <li key={item.id}>
-                  <div>
-                    <div>
-                      <img src={item.images[0]} alt='' />
-                    </div>
-                    <div>
-                      <div>
-                        <span>{item.name}</span>
-                        <span>{item.category}</span>
-                        <span>{item.price}</span>
-                      </div>
-                      <div>
-                        <div>
-                          <span onClick={() => dispatchDecrease(item.id)}>-</span>
-                          <span>{item.quantity}</span>
-                          <span onClick={() => dispatchIncrease(item.id)}>+</span>
+        <div className='c-checkout'>
+          <div className='c-checkout__heading'>
+            <h1>Cart</h1>
+            {cart.sum > 100 ? <p>You are eligible for free shipping</p> : <p>You need to purchase more than $100 for free shipping</p>}
+          </div>
+          {cart.cartItems.length > 0 && (
+            <>
+              <ul className='c-checkout__list'>
+                {cart.cartItems.map((item) => (
+                  <li key={item.id} className='c-checkout__item'>
+                    <div className='c-checkout__item-content'>
+                      <div className='c-checkout__item-info'>
+                        <div className='c-checkout__item-image-wrapper'>
+                          <div className='c-checkout__item-image'>
+                            <img src={item.images[0]} alt='' />
+                          </div>
                         </div>
-                        <button onClick={() => dispatchRemove(item.id)}>remove</button>
+                        <div className='c-checkout__item-detail'>
+                          <span className='c-checkout__item-name'>{item.name}</span>
+                          <span className='c-checkout__item-category'>{item.category}</span>
+                          <span className='c-checkout__item-price'>${item.price}</span>
+                        </div>
                       </div>
-                      <div>
-                        <div>{item.sum}</div>
+                      <div className='c-checkout__item-option'>
+                        <div className='c-checkout__item-quantity'>
+                          <button onClick={() => dispatchDecrease(item.id)}>-</button>
+                          <span>{item.quantity}</span>
+                          <button onClick={() => dispatchIncrease(item.id)}>+</button>
+                        </div>
+                        <button onClick={() => dispatchRemove(item.id)} className='c-checkout__item-remove'>
+                          remove
+                        </button>
+                      </div>
+                      <div className='c-checkout__item-sum'>
+                        <span>${item.sum}</span>
                       </div>
                     </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            {cart.sum}
-            <button onClick={purchaseItems}>Checkout</button>
-          </>
-        )}
+                  </li>
+                ))}
+              </ul>
+              <div className='c-checkout__confirm'>
+                <span className='c-checkout__confirm-sum'>TOTAL: ${cart.sum}</span>
+                <p>Shipping & taxes calculated at checkout</p>
+                <div className='c-checkout__confirm-terms'>
+                  <input type='checkbox' name='' id='' />
+                  <span>I agree with the terms and conditions.</span>
+                </div>
+                <button onClick={purchaseItems}>Checkout</button>
+              </div>
+            </>
+          )}
+        </div>
       </Section>
+      <Footer />
     </Main>
   );
 };

@@ -1,0 +1,15 @@
+.c-button {
+  background: white;
+  padding: 1rem 3rem;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  &:focus {
+    outline: none;
+  }
+  a {
+    text-decoration: none;
+    color: var(--font-base-color);
+    letter-spacing: 0.1em;
+  }
+}

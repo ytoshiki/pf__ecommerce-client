@@ -2,16 +2,65 @@
   &__items {
     display: flex;
     flex-wrap: wrap;
+    padding: 5.5rem;
 
     &.is-column-two {
       .c-product-item {
-        width: 50% !important;
+        width: calc(50% - 3rem);
+        margin-bottom: 8rem;
+        &:nth-child(2n) {
+          margin-left: 6rem;
+        }
+
+        a {
+          text-decoration: none;
+          text-align: left;
+          color: #282828;
+          font-size: 1.5rem;
+        }
+
+        &__name {
+          font-weight: bolder;
+
+          margin: 1.5rem 0 0.5rem;
+        }
+
+        &__price {
+          color: #282828;
+          font-size: 1.3rem;
+          font-family: 'Brygada 1918', serif;
+          letter-spacing: 0.05em;
+        }
       }
     }
 
     &.is-column-three {
       .c-product-item {
-        width: 33.3% !important;
+        width: calc(33.3% - 2rem);
+        margin-bottom: 5rem;
+        &:nth-child(3n + 2) {
+          margin-left: 3rem;
+          margin-right: 3rem;
+        }
+
+        a {
+          text-decoration: none;
+          text-align: left;
+          color: #282828;
+          font-size: 1.4rem;
+        }
+
+        &__name {
+          font-weight: bolder;
+          margin: 1.5rem 0 0.5rem;
+        }
+
+        &__price {
+          color: #282828;
+          font-size: 1.2rem;
+          font-family: 'Brygada 1918', serif;
+          letter-spacing: 0.05em;
+        }
       }
     }
   }

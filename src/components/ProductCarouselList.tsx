@@ -3,6 +3,7 @@ import { generateKey } from '../utils/generateKey';
 import ProductCarouselItem from './ProductCarouselItem';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import '../styles/components/ProductCarousel.scss';
 
 export interface ProductCarouselListProps {
   options?: {
@@ -14,6 +15,9 @@ export interface ProductCarouselListProps {
     autoplay: boolean;
     draggable: boolean;
     arrows: boolean;
+    centerMode: boolean;
+    autoplaySpeed?: number;
+    ease?: string;
   };
   items: any[];
 }
@@ -22,21 +26,23 @@ const ProductCarouselList: React.FC<ProductCarouselListProps> = ({ options, item
   if (!options) {
     options = {
       dots: true,
-      infinite: false,
-      speed: 500,
+      infinite: true,
+      speed: 800,
       slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
       draggable: true,
-      arrows: true
+      arrows: true,
+      centerMode: false,
+      autoplaySpeed: 5000
     };
   }
 
   return (
-    <div>
+    <div className='slick-wrapper'>
       <Slider {...options}>
         {items.map((item, index) => {
-          return <ProductCarouselItem key={generateKey(String(index))} item={item} properties={['name', 'id', 'price']} array={['images']} />;
+          return <ProductCarouselItem key={generateKey(String(index))} item={item} properties={['name', 'price']} array={['images']} />;
         })}
       </Slider>
     </div>

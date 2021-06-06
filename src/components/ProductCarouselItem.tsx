@@ -9,11 +9,20 @@ export interface ProductCarouselItemProps {
 
 const ProductCarouselItem: React.FC<ProductCarouselItemProps> = ({ item, properties, array }) => {
   return (
-    <div>
+    <div className='slick-item'>
       <Link to={`/products/${item.id || (item as any)._id}`}>
-        <img src={item[array[0]][0]} alt='' />
+        <div className='slick-image-wrapper'>
+          <div className='slick-image'>
+            <img src={item[array[0]][0]} alt='' />
+          </div>
+        </div>
+
         {properties?.map((property) => {
-          return <div key={generateKey(property)}>{item[property]}</div>;
+          return (
+            <div key={generateKey(property)} className={property}>
+              {property === 'price' ? `$${item[property]}` : item[property]}
+            </div>
+          );
         })}
       </Link>
     </div>

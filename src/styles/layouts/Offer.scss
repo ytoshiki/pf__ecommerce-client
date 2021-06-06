@@ -1,0 +1,39 @@
+.l-offer {
+  width: 100%;
+  padding-top: 600/1246 * 100%;
+  background: url('../../assets/offer-02.jpg') no-repeat center center / cover;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: #000000, $alpha: 0.15);
+  }
+  &__inner {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    padding: 3rem;
+    color: #fff;
+
+    small {
+      letter-spacing: 0.1em;
+      font-size: 1.3rem;
+      display: block;
+      margin-bottom: 3rem;
+    }
+
+    h3 {
+      font-size: 3rem;
+      font-family: 'Brygada 1918', serif;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 4rem;
+    }
+  }
+}

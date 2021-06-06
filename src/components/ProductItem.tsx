@@ -18,10 +18,10 @@ const ProductItem: React.FC<ProductItemProps> = ({ item }) => {
           <img src={item.images[0]} alt='' />
         </Link>
       </div>
-      <div>
+      <div className='c-product-item__name'>
         <Link to={`/products/${item._id}`}>{item.name}</Link>
       </div>
-      <div>{item.price}</div>
+      <div className='c-product-item__price'>${item.price}</div>
     </div>
   );
 };

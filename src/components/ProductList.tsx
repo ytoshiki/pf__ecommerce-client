@@ -144,7 +144,7 @@ const ProductList: React.FC<ProductListProps> = ({ items }) => {
 
   return (
     <div className='c-product-list'>
-      <SelectOptions onChange={onChange} option={option} toggleColumn={changeColumn} />
+      <SelectOptions onChange={onChange} option={option} toggleColumn={changeColumn} column={column} />
       <div className={`c-product-list__items ${column}`}>
         {renderItems.length &&
           renderItems.map((item: any) => {

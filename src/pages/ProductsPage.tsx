@@ -2,17 +2,17 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
+import PageHeader from '../layouts/PageHeader';
 import ProductBestSeller from '../components/ProductBestSellter';
 import ProductList from '../components/ProductList';
 import ProductRecent from '../components/ProductRecent';
-
 import Main from '../layouts/Main';
 import Section from '../layouts/Section';
 import { dispatchfetchCategories } from '../store/actions/category.action';
 import { ProductApiTypes } from '../types/api/ProductApiTypes';
-
 import { CategoryState } from '../types/store/categories/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
+import Footer from '../layouts/Footer';
 
 export interface ProductsPageProps {
   categories: CategoryState[];
@@ -86,17 +86,16 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ categories, fetchCategories
 
   return (
     <Main>
-      <Section>
-        <div>
-          <div style={{ backgroundImage: `url(${category.image})`, height: `400px` }}></div>
-          {category.name ? <h1>{category.name}</h1> : false}
-          {category.paragraph ? <h1>{category.paragraph}</h1> : false}
-        </div>
+      <PageHeader image={category.image} name={category.name} paragraph={category.paragraph ? (category.paragraph as string) : ''} />
+      <Section size='is-bottom'>{products.length ? <ProductList items={products} /> : 'no items'}</Section>
 
-        {products.length ? <ProductList items={products} /> : 'no items'}
+      <Section>
         <ProductRecent />
+      </Section>
+      <Section>
         <ProductBestSeller />
       </Section>
+      <Footer />
     </Main>
   );
 };

@@ -4,6 +4,7 @@ import { dispatchDecreaseQuantity, dispatchIncreaseQuantity, dispatchRemoveItem 
 import { CartState } from '../types/store/cart/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
 import '../styles/layouts/Cart.scss';
+import Button from '../components/Button';
 
 export interface CartProps {
   cart: CartState;
@@ -18,28 +19,31 @@ const Cart: React.FC<CartProps> = ({ cart, dispatchIncrease, dispatchDecrease, d
       <h2>Cart</h2>
       {cart.sum > 100 ? <p>You are eligible for free shipping</p> : <p>You need to purchase more than $100 for free shipping</p>}
 
-      {cart.cartItems.length && (
+      {cart.cartItems.length > 0 && (
         <>
-          <ul>
+          <ul className='l-cart__list'>
             {cart.cartItems.map((item) => (
-              <li key={item.id}>
-                <div>
-                  <div>
-                    <img src={item.images[0]} alt='' />
-                  </div>
-                  <div>
-                    <div>
-                      <span>{item.name}</span>
-                      <span>{item.category}</span>
-                      <span>{item.price}</span>
+              <li key={item.id} className='l-cart__item'>
+                <div className='l-cart__item-inner'>
+                  <div className='l-cart__item-image-wrapper'>
+                    <div className='l-cart__item-image'>
+                      <img src={item.images[0]} alt='' />
                     </div>
-                    <div>
-                      <div>
-                        <span onClick={() => dispatchDecrease(item.id)}>-</span>
+                  </div>
+                  <div className='l-cart__item-info'>
+                    <div className='l-cart__item-detail'>
+                      <span className='l-cart__item-name'>{item.name}</span>
+                      <span className='l-cart__item-price'>${item.price}</span>
+                    </div>
+                    <div className='l-cart__option'>
+                      <div className='l-cart__quantity'>
+                        <button onClick={() => dispatchDecrease(item.id)}>-</button>
                         <span>{item.quantity}</span>
-                        <span onClick={() => dispatchIncrease(item.id)}>+</span>
+                        <button onClick={() => dispatchIncrease(item.id)}>+</button>
                       </div>
-                      <button onClick={() => dispatchRemove(item.id)}>remove</button>
+                      <button className='l-cart__remove' onClick={() => dispatchRemove(item.id)}>
+                        remove
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -47,12 +51,12 @@ const Cart: React.FC<CartProps> = ({ cart, dispatchIncrease, dispatchDecrease, d
             ))}
           </ul>
 
-          <div>
+          <div className='l-cart__checkout'>
             <Link to='/checkout'>
-              <button>
-                Checkout
-                <span>{cart.sum}</span>
-              </button>
+              <Button>
+                <span className='l-cart__checkout-title'>Checkout: </span>
+                <span className='l-cart__checkout-sub'>{cart.sum}</span>
+              </Button>
             </Link>
           </div>
         </>

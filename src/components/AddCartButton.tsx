@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { dispatchAddCartItem } from '../store/actions/cart.action';
+import Button from './Button';
 
 export interface AddCartButtonProps {
   id: string;
@@ -12,7 +13,11 @@ const AddCartButton: React.FC<AddCartButtonProps> = ({ id, quantity, dispatchAdd
     dispatchAddToCart(id, quantity);
   };
 
-  return <button onClick={addToCart}>ADD TO CART</button>;
+  return (
+    <Button>
+      <span onClick={addToCart}>ADD TO CART</span>{' '}
+    </Button>
+  );
 };
 
 const mapDispatchToProps = (dispatch: any) => {

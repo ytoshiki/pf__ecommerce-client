@@ -1,0 +1,87 @@
+.l-footer {
+  background: #222222;
+  color: #d1cfcc;
+
+  &__inner {
+    padding: 7.5rem 8rem 7rem 8rem;
+  }
+
+  &__block {
+  }
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+  }
+
+  &__label {
+    color: #909090;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+  }
+
+  &__list {
+  }
+
+  &__item {
+    list-style: none;
+    font-family: 'Brygada 1918', serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: center;
+
+    text-align: center;
+  }
+
+  &__logo {
+    font-family: 'Yellowtail', cursive;
+    font-size: 6rem;
+    color: #909090;
+  }
+
+  &__copyright {
+    color: #909090;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  &__email {
+    color: #909090;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  &__newsletter {
+    min-width: 20rem;
+
+    input {
+      display: block;
+      width: 100%;
+      height: 3.5rem;
+      margin-bottom: 1.4rem;
+      background: none;
+      border: 1px solid #909090;
+      padding: 0 0.75rem;
+      color: #d1cfcc;
+      font-family: inherit;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      width: 100%;
+      background: none;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+  }
+}

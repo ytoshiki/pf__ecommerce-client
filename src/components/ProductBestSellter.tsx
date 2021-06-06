@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { compareProfit } from '../utils/compare';
 import Label from './Label';
 import ProductCarouselList from './ProductCarouselList';
+import '../styles/components/ProductBestSellers.scss';
 
 export interface ProductBestSellerProps {}
 
@@ -77,11 +78,11 @@ const ProductBestSeller: React.FC<ProductBestSellerProps> = () => {
   }, []);
 
   const renderDOM = productData.length ? (
-    <>
+    <div className='c-product-best-sellers'>
       {' '}
       <Label size={1} title='Best Sellers' sub='' />
       <ProductCarouselList items={productData} />
-    </>
+    </div>
   ) : null;
 
   return renderDOM;
