@@ -8,14 +8,21 @@ import { CartState } from '../types/store/cart/stateTypes';
 import { CategoryState } from '../types/store/categories/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
 import '../styles/layouts/Navigation.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import SlideBarMenu from '../components/SlidebarMenu';
+import { dispatchCloseMenu, dispatchOpenMenu } from '../store/actions/option.action';
 
 export interface NavigationProps {
   categories: CategoryState[];
   fetchCategories: () => void;
   cart: CartState;
+  menu: boolean;
+  openMenu: () => void;
+  closeMenu: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ categories, fetchCategories, cart }) => {
+const Navigation: React.FC<NavigationProps> = ({ categories, fetchCategories, cart, menu, openMenu, closeMenu }) => {
   useEffect(() => {
     let mounted = true;
     if (mounted) fetchCategories();
@@ -29,6 +36,10 @@ const Navigation: React.FC<NavigationProps> = ({ categories, fetchCategories, ca
 
   return (
     <nav className='l-navigation'>
+      <div className='l-navigation__slidebar'>
+        <FontAwesomeIcon icon={faBars} size='lg' onClick={openMenu} />
+      </div>
+      <SlideBarMenu />
       {categories.length && <NavigationList items={categories} property='name' link='id' />}
       <div className='l-navigation__logo'>
         <Link to='/'>W</Link>
@@ -41,13 +52,16 @@ const Navigation: React.FC<NavigationProps> = ({ categories, fetchCategories, ca
 const mapStateToProps = (store: storeTypes) => {
   return {
     categories: store.categories,
-    cart: store.cart
+    cart: store.cart,
+    menu: store.option.menu
   };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    fetchCategories: () => dispatch(dispatchfetchCategories())
+    fetchCategories: () => dispatch(dispatchfetchCategories()),
+    openMenu: () => dispatch(dispatchOpenMenu()),
+    closeMenu: () => dispatch(dispatchCloseMenu())
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

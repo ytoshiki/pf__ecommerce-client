@@ -1,4 +1,4 @@
-import { faTh, faThLarge } from '@fortawesome/free-solid-svg-icons';
+import { faSquare, faTh, faThLarge } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/components/SelectOptions.scss';
 export interface SelectOptionsProps {
@@ -12,10 +12,13 @@ const SelectOptions: React.FC<SelectOptionsProps> = ({ onChange, option, toggleC
   return (
     <div className='c-select-options'>
       <div className='c-select-options__column'>
+        <div onClick={() => toggleColumn('one')} className={`${column === 'is-column-one' ? 'is-active' : ''} c-select-options__icon is-sm-visible`}>
+          <FontAwesomeIcon icon={faSquare} size='lg' />
+        </div>
         <div onClick={() => toggleColumn('two')} className={`${column === 'is-column-two' ? 'is-active' : ''} c-select-options__icon`}>
           <FontAwesomeIcon icon={faThLarge} size='lg' />
         </div>
-        <div onClick={() => toggleColumn('three')} className={`${column === 'is-column-three' ? 'is-active' : ''} c-select-options__icon`}>
+        <div onClick={() => toggleColumn('three')} className={`${column === 'is-column-three' ? 'is-active' : ''} c-select-options__icon is-sm-hidden`}>
           <FontAwesomeIcon icon={faTh} size='lg' />
         </div>
       </div>

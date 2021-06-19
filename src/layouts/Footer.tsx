@@ -22,9 +22,11 @@ const Footer: React.FC<FooterProps> = () => {
             <div className='l-footer__label'>NEWSLETTER</div>
             <div className='l-footer__newsletter'>
               <input type='text' placeholder='Enter your email address' />
-              <Button>
-                <Link to=''>SUBSCRIBE</Link>
-              </Button>
+              <div className='l-footer__button'>
+                <Button>
+                  <Link to=''>SUBSCRIBE</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { generateKey } from '../utils/generateKey';
 import ProductItem from './ProductItem';
 import SelectOptions from './SelectOptions';
 import '../styles/components/ProductList.scss';
+import { useWindowSize } from '../hooks/resize';
 
 export interface ProductListProps {
   items: any[];
@@ -11,6 +12,8 @@ export interface ProductListProps {
 const ProductList: React.FC<ProductListProps> = ({ items }) => {
   const [renderItems, setRenderItems] = useState<any[]>(items);
   const [option, setOption] = useState('atoz');
+
+  const [column, setColumn] = useState('is-column-three');
 
   const itemsRef = useRef(renderItems);
 
@@ -132,11 +135,21 @@ const ProductList: React.FC<ProductListProps> = ({ items }) => {
     }
   }, [option, setRenderItems]);
 
+  // Toggle Column based off the screen size
+  const [width, height] = useWindowSize();
+  if (width < 500) {
+    if (column === 'is-column-three') {
+      setColumn('is-column-two');
+    }
+  }
+
+  if (width > 500 && column === 'is-column-one') {
+    setColumn('is-column-two');
+  }
+
   const onChange = (e: any) => {
     setOption(e.target.value);
   };
-
-  const [column, setColumn] = useState('');
 
   const changeColumn = (num: 'two' | 'three' | 'one') => {
     setColumn(`is-column-${num}`);

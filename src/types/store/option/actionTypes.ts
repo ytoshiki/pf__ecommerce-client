@@ -10,6 +10,11 @@ interface OPEN_SEARCH {
   payload: boolean;
 }
 
+interface OPEN_MENU {
+  type: OptionDispatchTypes.OPEN_MENU;
+  payload: boolean;
+}
+
 interface CLOSE_CART {
   type: OptionDispatchTypes.CLOSE_CART;
   payload: boolean;
@@ -20,4 +25,9 @@ interface CLOSE_SEARCH {
   payload: boolean;
 }
 
-export type OptionActions = OPEN_CART | OPEN_SEARCH | CLOSE_CART | CLOSE_SEARCH;
+interface CLOSE_MENU {
+  type: OptionDispatchTypes.CLOSE__MENU;
+  payload: boolean;
+}
+
+export type OptionActions = OPEN_CART | OPEN_SEARCH | CLOSE_CART | CLOSE_SEARCH | OPEN_MENU | CLOSE_MENU;

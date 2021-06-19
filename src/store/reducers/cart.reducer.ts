@@ -20,6 +20,12 @@ export const cartReducer = (state: CartState = initialState, action: CartActions
         cartItems: state.cartItems.concat(action.payload.cart),
         sum: state.sum + action.payload.total
       };
+    case CartDispatchTypes.ADD_CART_ITEM_EXIST:
+      return {
+        ...state,
+        cartItems: action.payload.cart,
+        sum: action.payload.sum
+      };
     case CartDispatchTypes.REMOVE_ITEM:
       return {
         ...state,

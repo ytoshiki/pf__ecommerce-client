@@ -2,21 +2,87 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.8rem 5rem 2.4rem;
-  box-shadow: 0 -1px #d7d6d4 inset;
+  padding: 0 5rem;
+  height: 8rem;
+  color: #fff;
   position: relative;
   z-index: 77;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: none;
+
+  transition: all ease 0.3s;
+
+  @media only screen and (max-width: 1000px) {
+    padding: 3rem 3.5rem 3rem;
+  }
+
+  &.is-scroll {
+    box-shadow: 0 -1px #d7d6d4 inset;
+    position: fixed;
+    color: #282828;
+    background: #fff;
+
+    .l-navigation__item {
+      &.register {
+        color: #000;
+        border-color: #000;
+      }
+    }
+  }
 
   &__list {
     display: flex;
     align-items: center;
+
+    @media only screen and (max-width: 1000px) {
+      display: none;
+    }
+
+    &.is-option {
+      @media only screen and (max-width: 1000px) {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
   }
 
   &__item {
     font-size: 1.4rem;
     list-style: none;
-    margin-right: 2rem;
+    margin-right: 3rem;
     text-transform: capitalize;
+
+    &.is-no-margin {
+      @media only screen and (max-width: 1000px) {
+        margin-right: 0;
+      }
+    }
+
+    &.is-sm-hidden {
+      @media only screen and (max-width: 1000px) {
+        display: none;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.register {
+      padding: 0.5rem 4rem;
+      color: #fff;
+      border: 1px solid #ffffff;
+    }
+  }
+
+  &__slidebar {
+    display: none;
+    @media only screen and (max-width: 1000px) {
+      display: block;
+    }
   }
 
   &__logo {
@@ -27,6 +93,9 @@
     a {
       font-family: 'Yellowtail', cursive !important;
       font-size: 3rem !important;
+    }
+
+    @media only screen and (max-width: 1000px) {
     }
   }
 

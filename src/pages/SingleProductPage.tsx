@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import AddCartButton from '../components/AddCartButton';
 import ProductBestSeller from '../components/ProductBestSellter';
 import ProductRecent from '../components/ProductRecent';
@@ -9,12 +9,14 @@ import Section from '../layouts/Section';
 import { ProductApiTypes } from '../types/api/ProductApiTypes';
 import '../styles/pages/SingleProduct.scss';
 import Footer from '../layouts/Footer';
-
+import Review from '../layouts/Review';
 export interface SingleProductPageProps {}
 
 const SingleProductPage: React.FC<SingleProductPageProps> = () => {
+  const history = useHistory();
   const params = useParams();
   const id = (params as { id: string }).id;
+
   const [product, setProduct] = useState<ProductApiTypes>();
   const [quantity, setQuantity] = useState(1);
   const [toggleImage, setToggleImage] = useState(false);
@@ -31,16 +33,44 @@ const SingleProductPage: React.FC<SingleProductPageProps> = () => {
 
         const product: ProductApiTypes = data.product;
 
-        setProduct(product);
+        if (product.category === null) {
+          history.push('/');
+        }
+
+        if (mounted) {
+          setProduct(product);
+        }
       } catch (error) {}
     };
 
-    if (mounted) fetchProduct();
+    fetchProduct();
 
     return () => {
       mounted = false;
     };
   }, [id]);
+
+  useEffect(() => {
+    setQuantity(1);
+  }, [id]);
+
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      const navigation = document.querySelector('.l-navigation');
+      if (navigation) {
+        navigation.classList.add('is-scroll');
+      }
+    }
+
+    return () => {
+      mounted = false;
+      const navigation = document.querySelector('.l-navigation');
+      if (navigation) {
+        navigation.classList.remove('is-scroll');
+      }
+    };
+  }, []);
 
   const changeQuantity = (option: string) => {
     if (option === '+') return setQuantity(quantity + 1);
@@ -90,8 +120,13 @@ const SingleProductPage: React.FC<SingleProductPageProps> = () => {
                   <span>{quantity}</span>
                   <button onClick={() => changeQuantity('+')}>+</button>
                 </div>
-                {product && <AddCartButton id={product?._id} quantity={quantity} />}
+                {product && (
+                  <div className='c-singleProduct__button'>
+                    <AddCartButton id={product?._id} quantity={quantity} />
+                  </div>
+                )}
               </div>
+              <Review id={id} />
             </div>
           </div>
         </div>

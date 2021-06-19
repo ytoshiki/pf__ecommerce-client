@@ -4,12 +4,55 @@
     flex-wrap: wrap;
     padding: 5.5rem;
 
+    @media only screen and (max-width: 750px) {
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    &.is-column-one {
+      .c-product-item {
+        width: 100%;
+        margin-bottom: 2rem;
+        padding: 2rem;
+
+        a {
+          text-decoration: none;
+          text-align: left;
+          color: #282828;
+
+          font-size: 1.3rem;
+        }
+
+        &__name {
+          font-weight: bolder;
+
+          margin: 0;
+        }
+
+        &__price {
+          color: #282828;
+          font-size: 1.3rem;
+          font-family: 'Brygada 1918', serif;
+          letter-spacing: 0.05em;
+        }
+      }
+    }
+
     &.is-column-two {
       .c-product-item {
         width: calc(50% - 3rem);
         margin-bottom: 8rem;
+
+        @media only screen and (max-width: 750px) {
+          width: calc(50% - 1rem);
+          margin-bottom: 3rem;
+        }
         &:nth-child(2n) {
           margin-left: 6rem;
+
+          @media only screen and (max-width: 750px) {
+            margin-left: 2rem;
+          }
         }
 
         a {
@@ -17,12 +60,18 @@
           text-align: left;
           color: #282828;
           font-size: 1.5rem;
+
+          @media only screen and (max-width: 750px) {
+            font-size: 1.3rem;
+          }
         }
 
         &__name {
           font-weight: bolder;
-
           margin: 1.5rem 0 0.5rem;
+          @media only screen and (max-width: 750px) {
+            margin: 0;
+          }
         }
 
         &__price {
@@ -38,9 +87,18 @@
       .c-product-item {
         width: calc(33.3% - 2rem);
         margin-bottom: 5rem;
+
+        @media only screen and (max-width: 750px) {
+          width: calc(33.3% - 1rem);
+          margin-bottom: 2rem;
+        }
         &:nth-child(3n + 2) {
           margin-left: 3rem;
           margin-right: 3rem;
+          @media only screen and (max-width: 750px) {
+            margin-left: 1.5rem;
+            margin-right: 1.5rem;
+          }
         }
 
         a {
@@ -53,6 +111,15 @@
         &__name {
           font-weight: bolder;
           margin: 1.5rem 0 0.5rem;
+          @media only screen and (max-width: 750px) {
+            margin: 0;
+          }
+
+          a {
+            @media only screen and (max-width: 750px) {
+              font-size: 1.3rem;
+            }
+          }
         }
 
         &__price {

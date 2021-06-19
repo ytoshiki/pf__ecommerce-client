@@ -1,0 +1,45 @@
+.c-slidebar-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  z-index: 999;
+  background: #fff;
+  color: #222;
+  height: 100vh;
+  overflow-x: hidden;
+  transition: all ease 0.4s;
+
+  &.is-visible {
+    width: 90%;
+    max-width: 34rem;
+  }
+
+  &__inner {
+    padding: 0 2rem;
+  }
+
+  &__list {
+    margin: 5rem 0 5rem;
+  }
+
+  &__item {
+    display: block;
+
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.287);
+  }
+
+  a {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+  }
+
+  &__button {
+    width: 100%;
+    height: 5rem;
+    font-family: inherit;
+    border: 1px solid #444;
+    background: none;
+  }
+}

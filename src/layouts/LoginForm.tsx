@@ -22,6 +22,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ dispatchLogin }) => {
     password: ''
   });
 
+  const [reqError, setReqError] = useState('');
+
   const onChange = (e: any) => {
     const key = e.target.name as 'username' | 'password';
     setSignInForm({
@@ -30,7 +32,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ dispatchLogin }) => {
     });
   };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
 
     const errors = Object.create(null);
@@ -54,20 +56,26 @@ const LoginForm: React.FC<LoginFormProps> = ({ dispatchLogin }) => {
       password: ''
     });
 
-    dispatchLogin(signInForm);
+    const result = await dispatchLogin(signInForm);
+    if (!result) {
+      return setReqError('Either email or password is wrong. Please try again.');
+    }
+
+    if (reqError) setReqError('');
   };
 
   return (
-    <form action='' onSubmit={onSubmit}>
-      <div>
+    <form action='' onSubmit={onSubmit} className='c-register__form'>
+      {reqError && <span className='c-register__error'>{reqError}</span>}
+      <div className='c-register__block'>
         <input type='text' placeholder='Username' name='username' onChange={onChange} />
-        {formError.username && <span>{formError.username}</span>}
+        {formError.username && <span className='c-register__error'>{formError.username}</span>}
       </div>
-      <div>
+      <div className='c-register__block'>
         <input type='password' placeholder='Password' name='password' onChange={onChange} />
-        {formError.password && <span>{formError.password}</span>}
+        {formError.password && <span className='c-register__error'>{formError.password}</span>}
       </div>
-      <button>Login</button>
+      <button className='c-register__button'>Login</button>
     </form>
   );
 };

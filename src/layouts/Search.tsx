@@ -8,16 +8,19 @@ import { ProductApiTypes } from '../types/api/ProductApiTypes';
 import '../styles/layouts/Search.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { storeTypes } from '../types/store/storeTypes';
+import { OptionData } from '../types/store/option/stateTypes';
 
 export interface SearchProps {
   closeSearch: () => void;
+  option: OptionData;
 }
 
 const searchProducts = (data: ProductApiTypes[], term: string) => {
   return data.filter((product) => product.name.toLowerCase().trim().includes(term.toLowerCase().trim()));
 };
 
-const Search: React.FC<SearchProps> = ({ closeSearch }) => {
+const Search: React.FC<SearchProps> = ({ closeSearch, option }) => {
   const [products, setProducts] = useState<ProductApiTypes[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<ProductApiTypes[]>([]);
 
@@ -54,7 +57,7 @@ const Search: React.FC<SearchProps> = ({ closeSearch }) => {
   };
 
   return (
-    <div className='l-search'>
+    <div className={`l-search ${option.search ? 'is-visible' : ''}`}>
       <div className='l-search__inner'>
         <SearchInput onChange={onChange} />
         <button className='l-search__close' onClick={closeSearch}>
@@ -65,6 +68,11 @@ const Search: React.FC<SearchProps> = ({ closeSearch }) => {
     </div>
   );
 };
+const mapStateToProps = (store: storeTypes) => {
+  return {
+    option: store.option
+  };
+};
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
@@ -72,4 +80,4 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

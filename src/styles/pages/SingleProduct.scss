@@ -1,8 +1,18 @@
 .c-singleProduct {
+  padding-top: 10rem;
+
+  @media only screen and (max-width: 750px) {
+    padding-top: 6rem;
+  }
   &__inner {
     display: flex;
     justify-content: space-between;
     padding: 0 9rem;
+
+    @media only screen and (max-width: 750px) {
+      flex-direction: column;
+      padding: 0 2rem;
+    }
   }
 
   &__gallery {
@@ -23,6 +33,7 @@
       overflow: hidden;
       width: 100%;
       max-width: 60rem;
+      min-width: 25rem;
       margin: auto;
 
       &::before {
@@ -35,12 +46,18 @@
     img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 
   &__content {
-    min-width: 45rem;
+    // min-width: 45rem;
+    width: 100%;
     margin-left: 3rem;
+
+    @media only screen and (max-width: 750px) {
+      margin-left: 0;
+    }
   }
 
   &__info {
@@ -56,6 +73,11 @@
     font-size: 2.5rem;
     font-weight: 500;
     margin: 1.5rem 0 2rem;
+
+    @media only screen and (max-width: 750px) {
+      font-size: 1.8rem;
+      margin: 1rem 0 1.4rem;
+    }
   }
 
   &__id {
@@ -65,6 +87,11 @@
     font-weight: 300;
     margin: 2rem 0;
     font-family: 'Brygada 1918', serif;
+
+    @media only screen and (max-width: 750px) {
+      font-size: 1.6rem;
+      margin: 1rem 0;
+    }
   }
 
   &__price {
@@ -74,6 +101,11 @@
     font-family: 'Brygada 1918', serif;
     letter-spacing: 0.05em;
     margin: 2rem 0;
+
+    @media only screen and (max-width: 750px) {
+      font-size: 1.6rem;
+      margin: 1rem 0;
+    }
   }
 
   &__cart {
@@ -104,6 +136,20 @@
       border: 1px solid black;
       width: 100%;
       padding: 2rem;
+
+      @media only screen and (max-width: 750px) {
+        padding: 1.5rem;
+      }
     }
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-family: inherit;
+    border: none;
+    width: 100%;
+    max-width: 40rem;
   }
 }

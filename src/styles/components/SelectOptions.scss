@@ -15,6 +15,19 @@
     &.is-active {
       opacity: 1;
     }
+
+    &.is-sm-hidden {
+      @media only screen and (max-width: 500px) {
+        display: none;
+      }
+    }
+
+    &.is-sm-visible {
+      display: none;
+      @media only screen and (max-width: 500px) {
+        display: block;
+      }
+    }
   }
   &__sort {
     select {

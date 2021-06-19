@@ -2,6 +2,10 @@
   padding: 6rem 0 8rem;
   border-bottom: 1px solid #d7d6d4;
 
+  @media only screen and (max-width: 750px) {
+    padding: 3rem 0 4rem;
+  }
+
   &.is-bottom {
     padding-top: 0 !important;
   }

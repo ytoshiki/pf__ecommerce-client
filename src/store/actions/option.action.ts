@@ -54,3 +54,31 @@ export const dispatchCloseSearch = () => {
     }
   };
 };
+
+export const dispatchOpenMenu = () => {
+  return (dispatch: any) => {
+    const menu = store.getState().option.menu;
+
+    document.body.classList.add('no-scroll');
+
+    if (!menu) {
+      dispatch({
+        type: OptionDispatchTypes.OPEN_MENU,
+        payload: true
+      });
+    }
+  };
+};
+
+export const dispatchCloseMenu = () => {
+  return (dispatch: any) => {
+    document.body.classList.remove('no-scroll');
+    const menu = store.getState().option.menu;
+    if (menu) {
+      dispatch({
+        type: OptionDispatchTypes.CLOSE__MENU,
+        payload: false
+      });
+    }
+  };
+};

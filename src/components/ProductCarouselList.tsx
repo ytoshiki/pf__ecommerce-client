@@ -18,6 +18,7 @@ export interface ProductCarouselListProps {
     centerMode: boolean;
     autoplaySpeed?: number;
     ease?: string;
+    responsive?: any[];
   };
   items: any[];
 }
@@ -34,7 +35,17 @@ const ProductCarouselList: React.FC<ProductCarouselListProps> = ({ options, item
       draggable: true,
       arrows: true,
       centerMode: false,
-      autoplaySpeed: 5000
+      autoplaySpeed: 5000,
+      responsive: [
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        }
+      ]
     };
   }
 

@@ -10,9 +10,11 @@ const Offer: React.FC<OfferProps> = () => {
       <div className='l-offer__inner'>
         <small>NEWSLETTER</small>
         <h3>Our Design News in Your Inbox</h3>
-        <Button>
-          <Link to='/register'>Join Us</Link>
-        </Button>
+        <div className='l-offer__button'>
+          <Button>
+            <Link to='/register'>Join Us</Link>
+          </Button>
+        </div>
       </div>
     </div>
   );

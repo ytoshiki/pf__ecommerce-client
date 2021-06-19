@@ -34,6 +34,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ dispatchRegister }) => {
     nat: ''
   });
 
+  const [reqError, setReqError] = useState('');
+
   const natValues = ['GB', 'FR', 'DK', 'NO', 'NL', 'US', 'NZ', 'FI', 'ES', 'CA', 'BR', 'AU', 'JP'];
 
   const natOptions = ['The U.K', 'France', 'Denmark', 'Norway', 'The Netherlands', 'The U.S', 'New Zealand', 'Finland', 'Spain', 'Canada', 'Brazil', 'Australia', 'Japan'];
@@ -54,7 +56,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ dispatchRegister }) => {
     }
   };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
 
     const errors = Object.create(null);
@@ -65,15 +67,13 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ dispatchRegister }) => {
       }
 
       if (option[0] === 'password' && (option[1] as string).length < 6) {
-        errors[option[0]] = `At least 6 characters is required.`;
+        errors[option[0]] = `At least 6 characters are required.`;
       }
     });
 
     if (Object.keys(errors).length > 0) {
       return setFormError(errors);
     }
-
-    dispatchRegister(registerForm);
 
     setFormError({
       username: '',
@@ -83,35 +83,42 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ dispatchRegister }) => {
       gender: '',
       nat: ''
     });
+
+    const result = await dispatchRegister(registerForm);
+
+    if (!result) {
+      setReqError('Username is already taken. Try another one');
+    }
   };
 
   return (
-    <form action='' onSubmit={onSubmit}>
-      <div>
+    <form action='' onSubmit={onSubmit} className='c-register__form'>
+      {reqError && <span className='c-register__error'>{reqError}</span>}
+      <div className='c-register__block'>
         <input type='text' placeholder='Username' name='username' onChange={onChange} />
-        {formError.username && <span>{formError.username}</span>}
+        {formError.username && <span className='c-register__error'>{formError.username}</span>}
       </div>
-      <div>
+      <div className='c-register__block'>
         <input type='email' placeholder='Email' name='email' onChange={onChange} />
-        {formError.email && <span>{formError.email}</span>}
+        {formError.email && <span className='c-register__error'>{formError.email}</span>}
       </div>
-      <div>
+      <div className='c-register__block'>
         <input type='password' placeholder='Password' name='password' onChange={onChange} />
-        {formError.password && <span>{formError.password}</span>}
+        {formError.password && <span className='c-register__error'>{formError.password}</span>}
       </div>
-      <div>
+      <div className='c-register__block'>
         <input type='number' placeholder='Age' name='age' onChange={onChange} min='10' max='100' />
-        {formError.age && <span>{formError.age}</span>}
+        {formError.age && <span className='c-register__error'>{formError.age}</span>}
       </div>
-      <div>
+      <div className='c-register__block'>
         <select name='gender' onChange={onChange}>
           <option value=''>--Gender--</option>
           <option value='male'>Male</option>
           <option value='female'>Female</option>
         </select>
-        {formError.gender && <span>{formError.gender}</span>}
+        {formError.gender && <span className='c-register__error'>{formError.gender}</span>}
       </div>
-      <div>
+      <div className='c-register__block'>
         <select name='nat' onChange={onChange}>
           <option value=''>--nationality--</option>
           {natOptions.map((nat, index) => {
@@ -122,9 +129,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ dispatchRegister }) => {
             );
           })}
         </select>
-        {formError.nat && <span>{formError.nat}</span>}
+        {formError.nat && <span className='c-register__error'>{formError.nat}</span>}
       </div>
-      <button>Register</button>
+      <button className='c-register__button'>Register</button>
     </form>
   );
 };

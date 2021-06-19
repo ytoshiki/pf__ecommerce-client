@@ -14,6 +14,14 @@ interface ADD_CART_ITEM {
   };
 }
 
+interface ADD_CART_ITEM_EXIST {
+  type: CartDispatchTypes.ADD_CART_ITEM_EXIST;
+  payload: {
+    cart: CartData[];
+    sum: number;
+  };
+}
+
 interface CALCULATE_SUM {
   type: CartDispatchTypes.CALCULATE_SUM;
   payload: number;
@@ -47,4 +55,4 @@ interface CLEAR_CART {
   type: CartDispatchTypes.CLEAR_CART;
 }
 
-export type CartActions = FETCH_CART_ITEMS | CALCULATE_SUM | INCREASE_ITEM_QUANTITY | DECREASE_ITEM_QUANTITY | REMOVE_ITEM | ADD_CART_ITEM | CLEAR_CART;
+export type CartActions = FETCH_CART_ITEMS | CALCULATE_SUM | INCREASE_ITEM_QUANTITY | DECREASE_ITEM_QUANTITY | REMOVE_ITEM | ADD_CART_ITEM | CLEAR_CART | ADD_CART_ITEM_EXIST;

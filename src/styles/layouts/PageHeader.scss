@@ -7,6 +7,11 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+
+    @media only screen and (max-width: 750px) {
+      height: 35rem;
+    }
+
     &:after {
       content: '';
       position: absolute;
@@ -28,6 +33,10 @@
       color: rgb(224, 224, 224);
       letter-spacing: 0.05em;
       font-family: 'Brygada 1918', serif;
+
+      @media only screen and (max-width: 750px) {
+        font-size: 2.8rem;
+      }
     }
   }
 }

@@ -1,0 +1,99 @@
+.c-register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 10rem;
+
+  @media only screen and (max-width: 750px) {
+    padding-top: 6rem;
+  }
+
+  &__inner {
+    width: 100%;
+    max-width: 40rem;
+    margin: auto;
+    padding: 0 2rem;
+  }
+
+  &__heading {
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  &__para {
+    text-align: center;
+    font-size: 1.4rem;
+  }
+
+  &__form {
+    margin-top: 2rem;
+
+    input {
+      width: 100%;
+      height: 3.5rem;
+      border: none;
+      border-radius: 0;
+      background: none;
+      border: 1px solid rgba(#333, 0.7);
+      font-family: inherit;
+      padding: 0 1rem;
+
+      &:focus {
+        background: none;
+        outline: none;
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 3.5rem;
+      border: none;
+      border-radius: 0;
+      background: none;
+      border: 1px solid rgba(#333, 0.7);
+      font-family: inherit;
+      padding: 0 1rem;
+
+      &:focus {
+        background: none;
+        outline: none;
+      }
+    }
+  }
+
+  &__block {
+    margin-bottom: 1.5rem;
+  }
+
+  &__button {
+    width: 100%;
+    height: 4rem;
+    font-family: inherit;
+    background: #333;
+    color: #fff;
+    outline: none;
+    border: none;
+  }
+
+  &__error {
+    font-size: 1.2rem;
+    color: #e41a3f;
+  }
+
+  &__option {
+    margin-top: 2.6rem;
+
+    text-align: center;
+    font-size: 1.3rem;
+
+    button {
+      outline: none;
+      border: none;
+      background: none;
+      font-family: inherit;
+
+      border-bottom: 1px solid black;
+    }
+  }
+}

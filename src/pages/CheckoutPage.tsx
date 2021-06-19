@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Main from '../layouts/Main';
 import SimpleModal from '../layouts/Modal';
@@ -63,6 +63,24 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cart, dispatchIncrease, dis
 
     proceedPurchase();
   };
+
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      const navigation = document.querySelector('.l-navigation');
+      if (navigation) {
+        navigation.classList.add('is-scroll');
+      }
+    }
+
+    return () => {
+      mounted = false;
+      const navigation = document.querySelector('.l-navigation');
+      if (navigation) {
+        navigation.classList.remove('is-scroll');
+      }
+    };
+  }, []);
 
   return (
     <Main>

@@ -4,7 +4,8 @@ import { OptionDispatchTypes } from '../../types/store/option/dispatchTypes';
 
 const initialState = {
   cart: false,
-  search: false
+  search: false,
+  menu: false
 };
 
 export const optionReducer = (state: OptionState = initialState, action: OptionActions) => {
@@ -19,6 +20,11 @@ export const optionReducer = (state: OptionState = initialState, action: OptionA
         ...state,
         search: action.payload
       };
+    case OptionDispatchTypes.OPEN_MENU:
+      return {
+        ...state,
+        menu: action.payload
+      };
     case OptionDispatchTypes.CLOSE_CART:
       return {
         ...state,
@@ -28,6 +34,11 @@ export const optionReducer = (state: OptionState = initialState, action: OptionA
       return {
         ...state,
         search: action.payload
+      };
+    case OptionDispatchTypes.CLOSE__MENU:
+      return {
+        ...state,
+        menu: action.payload
       };
     default:
       return state;

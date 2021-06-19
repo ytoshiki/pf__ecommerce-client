@@ -1,9 +1,22 @@
 .c-search-result {
   margin-top: 4rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: calc(100vh - 300px);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   &__hit {
     padding-bottom: 1.5rem;
     border-bottom: 1px solid #d7d6d4;
+
+    span {
+      color: #333;
+    }
   }
 
   &__matches {
@@ -15,8 +28,23 @@
   &__match {
     width: calc(25% - 3rem);
 
+    @media only screen and (max-width: 1000px) {
+      width: calc(50% - 1rem);
+      margin-bottom: 2rem;
+    }
+
     &:not(:last-child) {
       margin-right: 4rem;
+
+      @media only screen and (max-width: 1000px) {
+        margin-right: 0;
+      }
+    }
+
+    &:nth-child(2n) {
+      @media only screen and (max-width: 1000px) {
+        margin-left: 2rem;
+      }
     }
   }
 
@@ -53,6 +81,7 @@
     display: block;
     font-weight: bold;
     margin: 1rem 0 1.5rem;
+    color: #616161;
   }
 
   &__price {

@@ -4,6 +4,10 @@
   border-left: solid 1px #d7d6d4;
   border-right: solid 1px #d7d6d4;
 
+  @media only screen and (max-width: 750px) {
+    padding: 0 1rem;
+  }
+
   &__image {
     width: 100%;
 

@@ -7,6 +7,18 @@
   left: 0;
   transform: translateY(100%);
   padding: 2.8rem 5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all ease 0.3s;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    padding: 2.4rem 2rem;
+  }
 
   &__inner {
     display: flex;
@@ -26,6 +38,7 @@
       font-family: inherit;
       font-size: 1.6rem;
       padding-left: 2rem;
+      width: auto;
 
       &:focus {
         outline: none;

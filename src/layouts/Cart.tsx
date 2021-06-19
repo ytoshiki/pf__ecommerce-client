@@ -5,17 +5,20 @@ import { CartState } from '../types/store/cart/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
 import '../styles/layouts/Cart.scss';
 import Button from '../components/Button';
+import { OptionData } from '../types/store/option/stateTypes';
 
 export interface CartProps {
   cart: CartState;
   dispatchIncrease: (id: string) => void;
   dispatchDecrease: (id: string) => void;
   dispatchRemove: (id: string) => void;
+  option: OptionData;
 }
 
-const Cart: React.FC<CartProps> = ({ cart, dispatchIncrease, dispatchDecrease, dispatchRemove }) => {
+const Cart: React.FC<CartProps> = ({ cart, dispatchIncrease, dispatchDecrease, dispatchRemove, option }) => {
+  console.log(option);
   return (
-    <div className='l-cart'>
+    <div className={`l-cart ${option.cart ? 'is-visible' : ''}`}>
       <h2>Cart</h2>
       {cart.sum > 100 ? <p>You are eligible for free shipping</p> : <p>You need to purchase more than $100 for free shipping</p>}
 
@@ -67,7 +70,8 @@ const Cart: React.FC<CartProps> = ({ cart, dispatchIncrease, dispatchDecrease, d
 
 const mapStateToProps = (store: storeTypes) => {
   return {
-    cart: store.cart
+    cart: store.cart,
+    option: store.option
   };
 };
 

@@ -26,15 +26,6 @@ const AppContainer: React.FC<AppContainerProps> = ({ children, closeCart, closeS
     };
   }, [location, closeCart, closeSearch]);
 
-  // useEffect(() => {
-  //   if (cart) {
-  //     document.body.classList.add('no-scroll');
-  //   } else {
-  //     if (document.body.classList.contains('no-scroll')) {
-  //       document.body.classList.remove('no-scroll');
-  //     }
-  //   }
-  // }, [cart]);
   return <div>{children}</div>;
 };
 

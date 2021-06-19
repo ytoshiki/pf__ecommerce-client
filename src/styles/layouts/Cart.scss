@@ -1,12 +1,24 @@
 .l-cart {
   position: fixed;
   height: 100vh;
+  overflow-y: scroll;
   z-index: 99;
   top: 0;
   right: 0;
-  width: 40rem;
+  width: 0rem;
   background: #f7f6f4;
-  overflow: hidden;
+  overflow-x: hidden;
+  padding-bottom: 3rem;
+  color: #616161;
+  transition: all ease 0.3s;
+
+  &.is-visible {
+    width: 40rem;
+
+    @media only screen and (max-width: 420px) {
+      width: 90%;
+    }
+  }
 
   h2 {
     font-weight: 500;
@@ -89,12 +101,22 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media only screen and (max-width: 420px) {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
   }
 
   &__quantity {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media only screen and (max-width: 420px) {
+      margin-bottom: 1rem;
+    }
 
     button {
       outline: none;

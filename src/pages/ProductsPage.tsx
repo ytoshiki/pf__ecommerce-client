@@ -13,6 +13,7 @@ import { ProductApiTypes } from '../types/api/ProductApiTypes';
 import { CategoryState } from '../types/store/categories/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
 import Footer from '../layouts/Footer';
+import '../styles/components/Error.scss';
 
 export interface ProductsPageProps {
   categories: CategoryState[];
@@ -84,10 +85,39 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ categories, fetchCategories
     return cleanup;
   }, [categoryId]);
 
+  const scrollEvent = (e: any) => {
+    const navigation = document.querySelector('.l-navigation');
+    if (!navigation) return;
+
+    if (window.scrollY === 0) {
+      navigation.classList.remove('is-scroll');
+    } else {
+      navigation.classList.add('is-scroll');
+    }
+  };
+
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      window.addEventListener('scroll', scrollEvent);
+    }
+
+    return () => {
+      console.log('called');
+      mounted = false;
+      const navigation = document.querySelector('.l-navigation');
+      if (navigation) {
+        navigation.classList.remove('is-scroll');
+      }
+
+      window.removeEventListener('scroll', scrollEvent);
+    };
+  }, []);
+
   return (
     <Main>
       <PageHeader image={category.image} name={category.name} paragraph={category.paragraph ? (category.paragraph as string) : ''} />
-      <Section size='is-bottom'>{products.length ? <ProductList items={products} /> : 'no items'}</Section>
+      <Section size='is-bottom'>{products.length > 0 ? <ProductList items={products} /> : <div className='c-error'>Sorry, there are no items in this category. </div>}</Section>
 
       <Section>
         <ProductRecent />

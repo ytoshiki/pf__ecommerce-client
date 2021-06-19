@@ -30,8 +30,11 @@ export const dispatchLoginCustomer = (form: { username: string; password: string
         type: CustomerDispatchTypes.LOGIN_CUSTOMER,
         payload: customerReturned
       });
+
+      return true;
     } catch (error) {
       console.log(error.message);
+      return false;
     }
   };
 };
@@ -67,8 +70,11 @@ export const dispatchRegisterCustomer = (form: { username: string; email: string
         type: CustomerDispatchTypes.REGISTER_CUSTOMER,
         payload: customerReturned
       });
+
+      return true;
     } catch (error) {
       console.log(error.message);
+      return false;
     }
   };
 };

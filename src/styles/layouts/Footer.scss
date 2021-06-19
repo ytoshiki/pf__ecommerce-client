@@ -4,14 +4,27 @@
 
   &__inner {
     padding: 7.5rem 8rem 7rem 8rem;
+
+    @media only screen and (max-width: 750px) {
+      padding: 3.5rem 2rem 3.5rem 2rem;
+    }
   }
 
   &__block {
+    &:first-child {
+      @media only screen and (max-width: 500px) {
+        margin-bottom: 3rem;
+      }
+    }
   }
   &__top {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5rem;
+
+    @media only screen and (max-width: 500px) {
+      flex-direction: column;
+    }
   }
 
   &__label {
@@ -31,6 +44,10 @@
     font-size: 1.6rem;
     letter-spacing: 0.05em;
     margin-bottom: 1rem;
+
+    @media only screen and (max-width: 750px) {
+      font-size: 1.3rem;
+    }
   }
 
   &__bottom {
@@ -82,6 +99,17 @@
       background: none;
       color: #fff;
       border: 1px solid #fff;
+    }
+  }
+
+  &__button {
+    width: 30rem;
+    height: 5rem;
+
+    .c-button {
+      &::before {
+        display: none !important;
+      }
     }
   }
 }

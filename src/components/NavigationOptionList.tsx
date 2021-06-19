@@ -22,10 +22,10 @@ export interface NavigationOptionListProps {
 const NavigationOptionList: React.FC<NavigationOptionListProps> = ({ hasItemsInCart, option, openCart, openSearch, closeCart, closeSearch }) => {
   return (
     <>
-      <ul className='l-navigation__list'>
-        <li className='l-navigation__item'>
+      <ul className='l-navigation__list is-option'>
+        <li className='l-navigation__item is-sm-hidden'>
           <Link to='/register'>
-            <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon icon={faUser} size='lg' />
           </Link>
         </li>
         <li
@@ -39,7 +39,7 @@ const NavigationOptionList: React.FC<NavigationOptionListProps> = ({ hasItemsInC
           }}
           className='l-navigation__item'
         >
-          <FontAwesomeIcon icon={faSearch} />
+          <FontAwesomeIcon icon={faSearch} size='lg' />
         </li>
         <li
           onClick={() => {
@@ -50,17 +50,19 @@ const NavigationOptionList: React.FC<NavigationOptionListProps> = ({ hasItemsInC
               openCart();
             }
           }}
-          className='l-navigation__item'
+          className='l-navigation__item is-no-margin'
         >
           {hasItemsInCart && <span>*</span>}
-          <FontAwesomeIcon icon={faShoppingBag} />
+          <FontAwesomeIcon icon={faShoppingBag} size='lg' />
         </li>
-        <li className='l-navigation__item'>
+        <li className='l-navigation__item register is-sm-hidden'>
           <Link to='/register'>login</Link>
         </li>
       </ul>
-      {option.search && <Search />}
-      {option.cart && <Cart />}
+      {/* {option.search && <Search />}
+      {option.cart && <Cart />} */}
+      <Search />
+      <Cart />
       {option.cart && <div className='PageOverlay' onClick={closeCart}></div>}
       {option.search && <div className='PageOverlay is-search' onClick={closeSearch}></div>}
     </>
