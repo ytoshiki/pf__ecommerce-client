@@ -9,6 +9,8 @@ import { storeTypes } from '../types/store/storeTypes';
 import '../styles/layouts/Navigation.scss';
 
 import { dispatchCloseCart, dispatchCloseSearch, dispatchOpenCart, dispatchOpenSearch } from '../store/actions/option.action';
+import { CustomerData } from '../types/store/customer/stateTypes';
+import { dispatchLogoutCustomer } from '../store/actions/customer.action';
 
 export interface NavigationOptionListProps {
   hasItemsInCart?: boolean;
@@ -17,17 +19,39 @@ export interface NavigationOptionListProps {
   openSearch: () => void;
   closeCart: () => void;
   closeSearch: () => void;
+  logout: () => void;
+  user: CustomerData;
 }
 
-const NavigationOptionList: React.FC<NavigationOptionListProps> = ({ hasItemsInCart, option, openCart, openSearch, closeCart, closeSearch }) => {
+const NavigationOptionList: React.FC<NavigationOptionListProps> = ({ hasItemsInCart, option, openCart, openSearch, closeCart, closeSearch, user, logout }) => {
+  const renderUserLink = () => {
+    if (!!user.id) {
+      return (
+        <Link to='/reviews'>
+          <FontAwesomeIcon icon={faUser} size='lg' />
+        </Link>
+      );
+    } else {
+      return (
+        <Link to='/register'>
+          <FontAwesomeIcon icon={faUser} size='lg' />
+        </Link>
+      );
+    }
+  };
+
+  const renderRegisterLink = () => {
+    if (!!user.id) {
+      return <div onClick={logout}>logout</div>;
+    } else {
+      return <Link to='/register'>login</Link>;
+    }
+  };
+
   return (
     <>
       <ul className='l-navigation__list is-option'>
-        <li className='l-navigation__item is-sm-hidden'>
-          <Link to='/register'>
-            <FontAwesomeIcon icon={faUser} size='lg' />
-          </Link>
-        </li>
+        <li className='l-navigation__item is-sm-hidden'>{renderUserLink()}</li>
         <li
           onClick={() => {
             option.cart && closeCart();
@@ -55,9 +79,7 @@ const NavigationOptionList: React.FC<NavigationOptionListProps> = ({ hasItemsInC
           {hasItemsInCart && <span>*</span>}
           <FontAwesomeIcon icon={faShoppingBag} size='lg' />
         </li>
-        <li className='l-navigation__item register is-sm-hidden'>
-          <Link to='/register'>login</Link>
-        </li>
+        <li className='l-navigation__item register is-sm-hidden'>{renderRegisterLink()}</li>
       </ul>
       {/* {option.search && <Search />}
       {option.cart && <Cart />} */}
@@ -71,7 +93,8 @@ const NavigationOptionList: React.FC<NavigationOptionListProps> = ({ hasItemsInC
 
 const mapStateToProps = (store: storeTypes) => {
   return {
-    option: store.option
+    option: store.option,
+    user: store.customer
   };
 };
 
@@ -80,7 +103,8 @@ const mapDispatchToProps = (dispatch: any) => {
     openCart: () => dispatch(dispatchOpenCart()),
     closeCart: () => dispatch(dispatchCloseCart()),
     openSearch: () => dispatch(dispatchOpenSearch()),
-    closeSearch: () => dispatch(dispatchCloseSearch())
+    closeSearch: () => dispatch(dispatchCloseSearch()),
+    logout: () => dispatch(dispatchLogoutCustomer())
   };
 };
 

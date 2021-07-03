@@ -8,6 +8,7 @@ import SingleProductPage from './pages/SingleProductPage';
 import CheckoutPage from './pages/CheckoutPage';
 import RegisterPage from './pages/RegisterPage';
 import AppContainer from './layouts/AppContainer';
+import ReviewPage from './pages/ReviewPage';
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path='/register'>
             <RegisterPage />
+          </Route>
+          <Route path='/reviews'>
+            <ReviewPage />
           </Route>
           <Route path='/' exact>
             <TopPage />

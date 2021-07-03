@@ -4,8 +4,12 @@ import { CustomerDispatchTypes } from '../../types/store/customer/dispatchTypes'
 interface CustomerApiResponse {
   username: string;
   _id: string;
-  purchasesItems: any[];
+  purchasedItems: any[];
 }
+
+export const dispatchAddPurchasedItems = () => {
+  return (dispatch: any) => {};
+};
 
 export const dispatchLoginCustomer = (form: { username: string; password: string }) => {
   return async (dispatch: any) => {
@@ -20,16 +24,23 @@ export const dispatchLoginCustomer = (form: { username: string; password: string
 
       const customer: CustomerApiResponse = data.customer;
 
+      const token: string = data.token;
+
       const customerReturned = {
         id: customer._id,
         username: customer.username,
-        purchasedItems: customer.purchasesItems
+        purchasedItems: customer.purchasedItems,
+        token
       };
+
+      console.log(customerReturned);
 
       dispatch({
         type: CustomerDispatchTypes.LOGIN_CUSTOMER,
         payload: customerReturned
       });
+
+      window.localStorage.setItem('w_user', JSON.stringify(customerReturned));
 
       return true;
     } catch (error) {
@@ -44,6 +55,8 @@ export const dispatchLogoutCustomer = () => {
     dispatch({
       type: CustomerDispatchTypes.LOGOUT_CUSTOMER
     });
+
+    window.localStorage.removeItem('w_user');
   };
 };
 
@@ -59,17 +72,21 @@ export const dispatchRegisterCustomer = (form: { username: string; email: string
       }
 
       const customer: CustomerApiResponse = data.newUser;
+      const token: string = data.token;
 
       const customerReturned = {
         id: customer._id,
         username: customer.username,
-        purchasedItems: customer.purchasesItems
+        purchasedItems: customer.purchasedItems,
+        token
       };
 
       dispatch({
         type: CustomerDispatchTypes.REGISTER_CUSTOMER,
         payload: customerReturned
       });
+
+      window.localStorage.setItem('w_user', JSON.stringify(customerReturned));
 
       return true;
     } catch (error) {

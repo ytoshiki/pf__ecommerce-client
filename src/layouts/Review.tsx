@@ -49,7 +49,7 @@ const Review: React.FC<ReviewProps> = ({ id }) => {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [id]);
   return (
     <div className='l-review'>
       {reviews.length > 0 ? (
