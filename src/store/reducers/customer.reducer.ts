@@ -16,7 +16,14 @@ export const customerReducer = (state: CustomerState = initialState, action: Cus
     case CustomerDispatchTypes.REGISTER_CUSTOMER:
       return action.payload;
     case CustomerDispatchTypes.LOGOUT_CUSTOMER:
-      return initialState;
+      return {
+        id: '',
+        username: '',
+        purchasedItems: [],
+        token: null
+      };
+    case CustomerDispatchTypes.UPDATE_STATUS_CUSTOMER:
+      return action.payload;
     default:
       return state;
   }

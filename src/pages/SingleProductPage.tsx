@@ -22,6 +22,10 @@ const SingleProductPage: React.FC<SingleProductPageProps> = () => {
   const [toggleImage, setToggleImage] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  useEffect(() => {
     let mounted = true;
 
     const fetchProduct = async () => {
@@ -48,7 +52,7 @@ const SingleProductPage: React.FC<SingleProductPageProps> = () => {
     return () => {
       mounted = false;
     };
-  }, [id]);
+  }, [id, history]);
 
   useEffect(() => {
     setQuantity(1);

@@ -15,4 +15,14 @@ interface REGISTER_CUSTOMER {
   payload: CustomerData;
 }
 
-export type CustomerActions = LOGIN_CUSTOMER | LOGOUT_CUSTOMER | REGISTER_CUSTOMER;
+interface ADD_PURCHASEITEM {
+  type: CustomerDispatchTypes.ADD_PURCHASEITEM;
+  payload: string;
+}
+
+interface UPDATE_STATUS_CUSTOMER {
+  type: CustomerDispatchTypes.UPDATE_STATUS_CUSTOMER;
+  payload: CustomerData;
+}
+
+export type CustomerActions = LOGIN_CUSTOMER | LOGOUT_CUSTOMER | REGISTER_CUSTOMER | ADD_PURCHASEITEM | UPDATE_STATUS_CUSTOMER;

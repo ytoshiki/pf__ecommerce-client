@@ -8,8 +8,8 @@ export interface SearchInputProps {
 const SearchInput: React.FC<SearchInputProps> = ({ onChange }) => {
   return (
     <div className='l-search__input'>
-      <FontAwesomeIcon icon={faSearch} color='#bbb' />
-      <input type='text' onChange={onChange} placeholder='Search products...' />
+      <FontAwesomeIcon icon={faSearch} color='#bbb' className='l-search__input-icon' />
+      <input autoFocus type='text' onChange={onChange} placeholder='Search products...' />
     </div>
   );
 };

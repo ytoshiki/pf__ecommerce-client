@@ -33,8 +33,6 @@ export const dispatchLoginCustomer = (form: { username: string; password: string
         token
       };
 
-      console.log(customerReturned);
-
       dispatch({
         type: CustomerDispatchTypes.LOGIN_CUSTOMER,
         payload: customerReturned
@@ -50,13 +48,59 @@ export const dispatchLoginCustomer = (form: { username: string; password: string
   };
 };
 
+export const updateUserStatus = (id: string) => {
+  return async (dispatch: any) => {
+    try {
+      let user = localStorage.getItem('w_user');
+
+      if (user) {
+        user = JSON.parse(user);
+      }
+
+      if ((user as any).id !== id) {
+        throw new Error('User id is not matched');
+      }
+
+      const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}customers/${id}`);
+
+      const data = await response.data;
+
+      if (!data.success) {
+        throw new Error('User Not Found');
+      }
+
+      const customer = data.customer;
+
+      const customerReturned = {
+        id: customer._id,
+        username: customer.username,
+        purchasedItems: customer.purchasedItems,
+        token: (user as any).token
+      };
+
+      dispatch({
+        type: CustomerDispatchTypes.UPDATE_STATUS_CUSTOMER,
+        payload: customerReturned
+      });
+
+      window.localStorage.removeItem('w_user');
+      window.localStorage.setItem('w_user', JSON.stringify(customerReturned));
+
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  };
+};
+
 export const dispatchLogoutCustomer = () => {
   return (dispatch: any) => {
+    window.localStorage.removeItem('w_user');
+
     dispatch({
       type: CustomerDispatchTypes.LOGOUT_CUSTOMER
     });
-
-    window.localStorage.removeItem('w_user');
   };
 };
 

@@ -10,6 +10,7 @@ import { CustomerData } from '../types/store/customer/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
 import '../styles/pages/Checkout.scss';
 import Footer from '../layouts/Footer';
+import { updateUserStatus } from '../store/actions/customer.action';
 
 export interface CheckoutPageProps {
   cart: CartState;
@@ -18,9 +19,10 @@ export interface CheckoutPageProps {
   dispatchRemove: (id: string) => void;
   customer: CustomerData;
   dispatchClear: () => void;
+  updateUserStatus: (id: string) => boolean;
 }
 
-const CheckoutPage: React.FC<CheckoutPageProps> = ({ cart, dispatchIncrease, dispatchDecrease, dispatchRemove, customer, dispatchClear }) => {
+const CheckoutPage: React.FC<CheckoutPageProps> = ({ cart, dispatchIncrease, dispatchDecrease, dispatchRemove, customer, dispatchClear, updateUserStatus }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const purchaseItems = () => {
@@ -58,6 +60,11 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cart, dispatchIncrease, dis
       });
 
       dispatchClear();
+
+      const updateSuccess = updateUserStatus(customer.id);
+
+      if (!updateSuccess) console.error('Something went wrong');
+
       alert('Thank you.');
     };
 
@@ -157,7 +164,8 @@ const mapDispatchToProps = (dispatch: any) => {
     dispatchIncrease: (id: string) => dispatch(dispatchIncreaseQuantity(id)),
     dispatchDecrease: (id: string) => dispatch(dispatchDecreaseQuantity(id)),
     dispatchRemove: (id: string) => dispatch(dispatchRemoveItem(id)),
-    dispatchClear: () => dispatch(dispatchClearCart())
+    dispatchClear: () => dispatch(dispatchClearCart()),
+    updateUserStatus: (id: string) => dispatch(updateUserStatus(id))
   };
 };
 

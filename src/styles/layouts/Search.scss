@@ -23,26 +23,37 @@
   &__inner {
     display: flex;
     justify-content: space-between;
+    width: 100%;
   }
 
   &__close {
     outline: none;
     border: none;
     background: none;
+    flex: none;
   }
 
   &__input {
+    position: relative;
+    width: 100%;
     input {
       background: none;
       border: none;
       font-family: inherit;
       font-size: 1.6rem;
-      padding-left: 2rem;
-      width: auto;
+      padding-left: 4rem;
+      width: 100%;
 
       &:focus {
         outline: none;
       }
+    }
+
+    &-icon {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
     }
   }
 }

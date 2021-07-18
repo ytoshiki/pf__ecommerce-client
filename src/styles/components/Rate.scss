@@ -1,0 +1,30 @@
+.c-rate {
+  &__block {
+    margin-bottom: 10rem;
+  }
+  &__input {
+    width: 100%;
+    min-height: 10rem;
+    padding: 1rem;
+    font-family: inherit;
+    font-size: 1.8rem;
+    border: 1px solid #bbbbbb;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    width: 100%;
+    max-width: 20rem;
+    height: 5rem;
+    margin: auto;
+    display: block;
+    border: none;
+    background: #282828;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1.5rem;
+  }
+}

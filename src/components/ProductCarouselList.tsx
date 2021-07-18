@@ -49,15 +49,21 @@ const ProductCarouselList: React.FC<ProductCarouselListProps> = ({ options, item
     };
   }
 
-  return (
-    <div className='slick-wrapper'>
-      <Slider {...options}>
-        {items.map((item, index) => {
-          return <ProductCarouselItem key={generateKey(String(index))} item={item} properties={['name', 'price']} array={['images']} />;
-        })}
-      </Slider>
-    </div>
-  );
+  const renderSlider = () => {
+    if (items.length > 0) {
+      return (
+        <Slider {...options}>
+          {items.map((item, index) => {
+            return <ProductCarouselItem key={generateKey(String(index))} item={item} properties={['name', 'price']} array={['images']} />;
+          })}
+        </Slider>
+      );
+    } else {
+      return false;
+    }
+  };
+
+  return <div className='slick-wrapper'>{renderSlider()}</div>;
 };
 
 export default ProductCarouselList;

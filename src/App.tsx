@@ -9,6 +9,8 @@ import CheckoutPage from './pages/CheckoutPage';
 import RegisterPage from './pages/RegisterPage';
 import AppContainer from './layouts/AppContainer';
 import ReviewPage from './pages/ReviewPage';
+import WriteReviewPage from './pages/WriteReviewPage';
+import EditReviewPage from './pages/EditReviewPage';
 
 function App() {
   return (
@@ -31,8 +33,14 @@ function App() {
           <Route path='/register'>
             <RegisterPage />
           </Route>
-          <Route path='/reviews'>
+          <Route path='/reviews' exact>
             <ReviewPage />
+          </Route>
+          <Route path='/reviews/edit/:id'>
+            <EditReviewPage />
+          </Route>
+          <Route path='/reviews/:id'>
+            <WriteReviewPage />
           </Route>
           <Route path='/' exact>
             <TopPage />
