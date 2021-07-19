@@ -35,6 +35,7 @@
 
     &:not(:last-child) {
       margin-right: 4rem;
+      margin-bottom: 2.4rem;
 
       @media only screen and (max-width: 1000px) {
         margin-right: 0;

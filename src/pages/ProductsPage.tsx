@@ -57,7 +57,7 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ categories, fetchCategories
   }, [categoryId, fetchCategories]);
 
   useEffect(() => {
-    let unmount = false;
+    let mounted = true;
 
     const fetchProducts = async () => {
       try {
@@ -66,9 +66,12 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ categories, fetchCategories
 
         if (!data.success) throw new Error(data.message);
 
-        if (!data.products.length) throw new Error('Items Not Found');
+        if (!data.products.length) {
+          setProducts([]);
+          throw new Error('Items Not Found');
+        }
 
-        if (!unmount) {
+        if (mounted) {
           setProducts(data.products);
         }
       } catch (error) {
@@ -78,12 +81,10 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ categories, fetchCategories
 
     fetchProducts();
 
-    const cleanup = () => {
-      unmount = true;
+    return () => {
+      mounted = false;
     };
-
-    return cleanup;
-  }, [categoryId]);
+  }, [categoryId, setProducts]);
 
   const scrollEvent = (e: any) => {
     const navigation = document.querySelector('.l-navigation');
@@ -103,7 +104,6 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ categories, fetchCategories
     }
 
     return () => {
-      console.log('called');
       mounted = false;
       const navigation = document.querySelector('.l-navigation');
       if (navigation) {
@@ -114,11 +114,12 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ categories, fetchCategories
     };
   }, []);
 
+  console.log({ products });
+
   return (
     <Main>
       <PageHeader image={category.image} name={category.name} paragraph={category.paragraph ? (category.paragraph as string) : ''} />
       <Section size='is-bottom'>{products.length > 0 ? <ProductList items={products} /> : <div className='c-error'>Sorry, there are no items in this category. </div>}</Section>
-
       <Section>
         <ProductRecent />
       </Section>

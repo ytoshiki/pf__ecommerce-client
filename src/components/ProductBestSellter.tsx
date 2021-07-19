@@ -61,7 +61,7 @@ const ProductBestSeller: React.FC<ProductBestSellerProps> = () => {
 
         returndata.sort(compareProfit);
 
-        if (mounted) setProductData(returndata.slice(0, 10));
+        if (mounted) setProductData(returndata.slice(0, 6));
       } catch (error) {
         console.log(error.message);
         return;

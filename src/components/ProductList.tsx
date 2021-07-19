@@ -9,33 +9,31 @@ export interface ProductListProps {
   items: any[];
 }
 
+const optionsList = {
+  name_atoz: 'atoz',
+  name_ztoa: 'ztoa',
+  price_ltoh: 'ltoh',
+  price_htol: 'htol',
+  date_oton: 'oton',
+  date_ntoo: 'ntoo'
+};
+
 const ProductList: React.FC<ProductListProps> = ({ items }) => {
-  const [renderItems, setRenderItems] = useState<any[]>(items);
   const [option, setOption] = useState('atoz');
 
   const [column, setColumn] = useState('is-column-three');
 
-  const itemsRef = useRef(renderItems);
+  const [sortedItems, setSortedItems] = useState<any[]>([]);
+  // const itemsRef = useRef(renderItems);
 
   useEffect(() => {
-    console.log('effect');
-
-    const optionsList = {
-      name_atoz: 'atoz',
-      name_ztoa: 'ztoa',
-      price_ltoh: 'ltoh',
-      price_htol: 'htol',
-      date_oton: 'oton',
-      date_ntoo: 'ntoo'
-    };
-
-    console.log(option);
     if (!Object.values(optionsList).some((optionItem) => optionItem === option)) {
       return;
     }
 
     let sortedArray;
-    let copiedArray = [...itemsRef.current];
+    // let copiedArray = [...itemsRef.current];
+    let copiedArray = [...items];
     switch (option) {
       case optionsList.name_atoz:
         sortedArray = copiedArray.sort(function (a, b) {
@@ -50,7 +48,7 @@ const ProductList: React.FC<ProductListProps> = ({ items }) => {
 
           return 0;
         });
-        setRenderItems([...sortedArray]);
+        setSortedItems(sortedArray);
         break;
       case optionsList.name_ztoa:
         sortedArray = copiedArray.sort(function (a, b) {
@@ -65,7 +63,7 @@ const ProductList: React.FC<ProductListProps> = ({ items }) => {
 
           return 0;
         });
-        setRenderItems([...sortedArray]);
+        setSortedItems(sortedArray);
         break;
       case optionsList.price_htol:
         sortedArray = copiedArray.sort(function (a, b) {
@@ -80,7 +78,7 @@ const ProductList: React.FC<ProductListProps> = ({ items }) => {
 
           return 0;
         });
-        setRenderItems([...sortedArray]);
+        setSortedItems(sortedArray);
         break;
       case optionsList.price_ltoh:
         sortedArray = copiedArray.sort(function (a, b) {
@@ -95,7 +93,7 @@ const ProductList: React.FC<ProductListProps> = ({ items }) => {
 
           return 0;
         });
-        setRenderItems([...sortedArray]);
+        setSortedItems(sortedArray);
         break;
       case optionsList.date_oton:
         sortedArray = copiedArray.sort(function (a, b) {
@@ -110,8 +108,8 @@ const ProductList: React.FC<ProductListProps> = ({ items }) => {
 
           return 0;
         });
-        console.log(sortedArray);
-        setRenderItems([...sortedArray]);
+
+        setSortedItems(sortedArray);
         break;
       case optionsList.date_ntoo:
         sortedArray = copiedArray.sort(function (a, b) {
@@ -126,14 +124,14 @@ const ProductList: React.FC<ProductListProps> = ({ items }) => {
 
           return 0;
         });
-        console.log(sortedArray);
-        setRenderItems([...sortedArray]);
+
+        setSortedItems(sortedArray);
         break;
 
       default:
-        setRenderItems([...itemsRef.current]);
+      // setRenderItems([...(renderItems as any)]);
     }
-  }, [option, setRenderItems]);
+  }, [option, items]);
 
   // Toggle Column based off the screen size
   const [width, height] = useWindowSize();
@@ -159,10 +157,14 @@ const ProductList: React.FC<ProductListProps> = ({ items }) => {
     <div className='c-product-list'>
       <SelectOptions onChange={onChange} option={option} toggleColumn={changeColumn} column={column} />
       <div className={`c-product-list__items ${column}`}>
-        {renderItems.length &&
-          renderItems.map((item: any) => {
+        {sortedItems.length > 0 &&
+          sortedItems.map((item: any) => {
             return <ProductItem key={generateKey(item._id)} item={item} />;
           })}
+        {/* {items.length &&
+          items.map((item: any) => {
+            return <ProductItem key={generateKey(item._id)} item={item} />;
+          })} */}
       </div>
     </div>
   );

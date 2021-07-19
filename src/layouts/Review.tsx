@@ -28,6 +28,7 @@ const Review: React.FC<ReviewProps> = ({ id }) => {
   const [reviews, setReviews] = useState<ReviewType[]>([]);
 
   useEffect(() => {
+    console.log('review compoent rerendered');
     let mounted = true;
     const fetchReviews = async () => {
       try {
@@ -35,11 +36,13 @@ const Review: React.FC<ReviewProps> = ({ id }) => {
         const data = await response.data;
 
         if (!data.success) {
+          setReviews([]);
           throw new Error(data.message || 'Something went wrong');
         }
 
         if (mounted) setReviews(data.reviews);
       } catch (error) {
+        setReviews([]);
         console.log(error.message);
       }
     };

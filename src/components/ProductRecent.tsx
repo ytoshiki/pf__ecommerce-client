@@ -30,7 +30,7 @@ const ProductRecent: React.FC<ProductRecentProps> = () => {
           return new Date(prev.createdAt).getTime() - new Date(curr.createdAt).getTime();
         });
 
-        if (mounted) setProductData(sortedProducts.slice(0, 8));
+        if (mounted) setProductData(sortedProducts.slice(0, 6));
 
         const cleanup = () => {
           mounted = false;
@@ -43,12 +43,13 @@ const ProductRecent: React.FC<ProductRecentProps> = () => {
     logPurchases();
   }, []);
 
-  const renderDOM = productData.length ? (
-    <>
-      <Label size={1} title='New' sub='' />
-      <ProductCarouselList items={productData} />
-    </>
-  ) : null;
+  const renderDOM =
+    productData.length > 0 ? (
+      <>
+        <Label size={1} title='New' sub='' />
+        <ProductCarouselList items={productData} />
+      </>
+    ) : null;
 
   return renderDOM;
 };
