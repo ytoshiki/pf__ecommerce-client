@@ -51,7 +51,7 @@ const NavigationOptionList: React.FC<NavigationOptionListProps> = ({ hasItemsInC
   return (
     <>
       <ul className='l-navigation__list is-option'>
-        <li className='l-navigation__item is-sm-hidden'>{renderUserLink()}</li>
+        <li className='l-navigation__item'>{renderUserLink()}</li>
         <li
           onClick={() => {
             option.cart && closeCart();

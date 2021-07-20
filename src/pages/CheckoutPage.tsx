@@ -45,8 +45,14 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cart, dispatchIncrease, dis
       return;
     }
 
-    const proceedPurchase = () => {
-      purchaseList.forEach(async (item, index) => {
+    const proceedPurchase = async () => {
+      async function asyncForEach(array: any[], callback: (item: any) => any) {
+        for (let index = 0; index < array.length; index++) {
+          await callback(array[index]);
+        }
+      }
+
+      await asyncForEach(purchaseList, async (item) => {
         try {
           const response = await axios.post(`${process.env.REACT_APP_API_ENDPOINT}purchase`, item);
           const data = await response.data;
