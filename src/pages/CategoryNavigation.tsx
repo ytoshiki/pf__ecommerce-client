@@ -4,14 +4,14 @@ import Footer from '../layouts/Footer';
 import Main from '../layouts/Main';
 import Section from '../layouts/Section';
 import { dispatchfetchCategories } from '../store/actions/category.action';
-import { CategoryState } from '../types/store/categories/stateTypes';
+import { CategoryData } from '../types/store/categories/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
 import { Link } from 'react-router-dom';
 import { generateKey } from '../utils/generateKey';
 import '../styles/pages/CategoryNavigation.scss';
 
 export interface CategoryNavigationPageProps {
-  categories: CategoryState[];
+  categories: CategoryData[];
   fetchCategories: () => void;
 }
 
@@ -82,7 +82,7 @@ const CategoryNavigationPage: React.FC<CategoryNavigationPageProps> = ({ categor
 
 const mapStateToProps = (store: storeTypes) => {
   return {
-    categories: store.categories
+    categories: store.categories.categories
   };
 };
 

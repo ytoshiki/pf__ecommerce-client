@@ -11,6 +11,11 @@ interface CategoryResponse {
 
 export const dispatchfetchCategories = () => {
   return async (dispatch: any) => {
+    dispatch({
+      type: CategoryDispatchTypes.START_FETCHING_CATEGORIES,
+      payload: true
+    });
+
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}categories`);
       const data = response.data;
@@ -40,6 +45,10 @@ export const dispatchfetchCategories = () => {
 
       return categories_payload;
     } catch (error) {
+      dispatch({
+        type: CategoryDispatchTypes.STOP_FETCHING_CATEGORIES,
+        payload: false
+      });
       console.log(error.message);
     }
   };

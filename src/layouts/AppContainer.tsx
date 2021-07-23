@@ -7,10 +7,10 @@ import { storeTypes } from '../types/store/storeTypes';
 export interface AppContainerProps {
   closeCart: () => void;
   closeSearch: () => void;
-  cart: boolean;
+  loading: boolean;
 }
 
-const AppContainer: React.FC<AppContainerProps> = ({ children, closeCart, closeSearch, cart }) => {
+const AppContainer: React.FC<AppContainerProps> = ({ children, closeCart, closeSearch, loading }) => {
   const location = useLocation();
 
   useEffect(() => {
@@ -26,12 +26,34 @@ const AppContainer: React.FC<AppContainerProps> = ({ children, closeCart, closeS
     };
   }, [location, closeCart, closeSearch]);
 
-  return <div>{children}</div>;
+  return (
+    <div>
+      {loading && (
+        <div className='loading-wrapper'>
+          <div className='lds-default'>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      )}
+      {children}
+    </div>
+  );
 };
 
 const mapStateToProps = (store: storeTypes) => {
   return {
-    cart: store.option.cart
+    loading: store.categories.loading
   };
 };
 

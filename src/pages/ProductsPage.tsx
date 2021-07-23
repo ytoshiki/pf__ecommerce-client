@@ -10,13 +10,13 @@ import Main from '../layouts/Main';
 import Section from '../layouts/Section';
 import { dispatchfetchCategories } from '../store/actions/category.action';
 import { ProductApiTypes } from '../types/api/ProductApiTypes';
-import { CategoryState } from '../types/store/categories/stateTypes';
+import { CategoryData } from '../types/store/categories/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
 import Footer from '../layouts/Footer';
 import '../styles/components/Error.scss';
 
 export interface ProductsPageProps {
-  categories: CategoryState[];
+  categories: CategoryData[];
   fetchCategories: () => any;
 }
 
@@ -133,7 +133,7 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ categories, fetchCategories
 
 const mapStateToProps = (store: storeTypes) => {
   return {
-    categories: store.categories
+    categories: store.categories.categories
   };
 };
 

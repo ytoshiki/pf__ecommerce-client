@@ -58,6 +58,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ dispatchRegister }) => {
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
+    setFormError({
+      username: '',
+      email: '',
+      password: '',
+      age: '',
+      gender: '',
+      nat: ''
+    });
 
     const errors = Object.create(null);
     const errorChecker = Object.entries(registerForm);
@@ -74,15 +82,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ dispatchRegister }) => {
     if (Object.keys(errors).length > 0) {
       return setFormError(errors);
     }
-
-    setFormError({
-      username: '',
-      email: '',
-      password: '',
-      age: '',
-      gender: '',
-      nat: ''
-    });
 
     const result = await dispatchRegister(registerForm);
 
@@ -107,7 +106,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ dispatchRegister }) => {
         {formError.password && <span className='c-register__error'>{formError.password}</span>}
       </div>
       <div className='c-register__block'>
-        <input type='number' placeholder='Age' name='age' onChange={onChange} min='10' max='100' />
+        <input type='number' placeholder='Age' name='age' onChange={onChange} min='17' max='100' />
         {formError.age && <span className='c-register__error'>{formError.age}</span>}
       </div>
       <div className='c-register__block'>

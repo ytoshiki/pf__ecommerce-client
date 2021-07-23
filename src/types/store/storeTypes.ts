@@ -4,7 +4,7 @@ import { CustomerData } from './customer/stateTypes';
 import { OptionData } from './option/stateTypes';
 
 export interface storeTypes {
-  categories: CategoryState[];
+  categories: CategoryState;
   cart: CartState;
   customer: CustomerData;
   option: OptionData;

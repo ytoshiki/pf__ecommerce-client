@@ -5,7 +5,7 @@ import NavigationList from '../components/NavigationList';
 import NavigationOptionList from '../components/NavigationOptionList';
 import { dispatchfetchCategories } from '../store/actions/category.action';
 import { CartState } from '../types/store/cart/stateTypes';
-import { CategoryState } from '../types/store/categories/stateTypes';
+import { CategoryData } from '../types/store/categories/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
 import '../styles/layouts/Navigation.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +14,7 @@ import SlideBarMenu from '../components/SlidebarMenu';
 import { dispatchCloseMenu, dispatchOpenMenu } from '../store/actions/option.action';
 
 export interface NavigationProps {
-  categories: CategoryState[];
+  categories: CategoryData[];
   fetchCategories: () => void;
   cart: CartState;
   menu: boolean;
@@ -51,7 +51,7 @@ const Navigation: React.FC<NavigationProps> = ({ categories, fetchCategories, ca
 
 const mapStateToProps = (store: storeTypes) => {
   return {
-    categories: store.categories,
+    categories: store.categories.categories,
     cart: store.cart,
     menu: store.option.menu
   };

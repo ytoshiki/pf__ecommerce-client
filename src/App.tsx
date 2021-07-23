@@ -1,5 +1,5 @@
 import './App.scss';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navigation from './layouts/Navigation';
 import TopPage from './pages/TopPage';
 import CategoryNavigationPage from './pages/CategoryNavigation';

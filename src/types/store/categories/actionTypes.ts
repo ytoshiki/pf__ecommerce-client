@@ -6,4 +6,14 @@ interface FETCH_CATEGORIES {
   payload: CategoryData[];
 }
 
-export type CategoryActions = FETCH_CATEGORIES;
+interface START_FEACHING_CATEGORIES {
+  type: CategoryDispatchTypes.START_FETCHING_CATEGORIES;
+  payload: boolean;
+}
+
+interface STOP_FEACHING_CATEGORIES {
+  type: CategoryDispatchTypes.STOP_FETCHING_CATEGORIES;
+  payload: boolean;
+}
+
+export type CategoryActions = FETCH_CATEGORIES | START_FEACHING_CATEGORIES | STOP_FEACHING_CATEGORIES;

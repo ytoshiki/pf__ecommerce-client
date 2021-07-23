@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { dispatchfetchCategories } from '../store/actions/category.action';
 import { dispatchCloseMenu } from '../store/actions/option.action';
 import '../styles/components/Slidebar.scss';
-import { CategoryData, CategoryState } from '../types/store/categories/stateTypes';
+import { CategoryData } from '../types/store/categories/stateTypes';
 import { storeTypes } from '../types/store/storeTypes';
 import { Link } from 'react-router-dom';
 import { generateKey } from '../utils/generateKey';
 
 export interface SlideBarMenuProps {
-  categories: CategoryState[];
+  categories: CategoryData[];
   fetchCategories: () => void;
   menu: boolean;
   closeMenu: () => void;
@@ -35,7 +35,6 @@ const SlideBarMenu: React.FC<SlideBarMenuProps> = ({ categories, fetchCategories
                 );
               })}
           </ul>
-          <button className='c-slidebar-menu__button'>LOGIN</button>
         </div>
       </div>
       {menu && <div className='PageOverlay' onClick={closeMenu}></div>}
@@ -45,7 +44,7 @@ const SlideBarMenu: React.FC<SlideBarMenuProps> = ({ categories, fetchCategories
 
 const mapStateToProps = (store: storeTypes) => {
   return {
-    categories: store.categories,
+    categories: store.categories.categories,
     menu: store.option.menu
   };
 };
