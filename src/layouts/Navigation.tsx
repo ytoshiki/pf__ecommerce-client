@@ -40,7 +40,7 @@ const Navigation: React.FC<NavigationProps> = ({ categories, fetchCategories, ca
         <FontAwesomeIcon icon={faBars} size='lg' onClick={openMenu} />
       </div>
       <SlideBarMenu />
-      {categories.length && <NavigationList items={categories} property='name' link='id' />}
+      {categories.length > 0 && <NavigationList items={categories} property='name' link='id' />}
       <div className='l-navigation__logo'>
         <Link to='/'>W</Link>
       </div>
